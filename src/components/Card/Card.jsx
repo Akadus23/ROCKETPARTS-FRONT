@@ -2,7 +2,8 @@
 export default function(){
     return(
         <div>
-            <h2>Esta es el component Cardstat</h2>
+            <h2>Este es el component Card</h2>
         </div>
     )
 }
+
