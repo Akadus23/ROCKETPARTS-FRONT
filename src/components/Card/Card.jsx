@@ -1,8 +1,14 @@
+import "./Card.css";
 
-export default function(){
+
+export default function({Ref, tipo, capacidad, precio, imagen}){
     return(
-        <div>
-            <h2>Este es el component Card</h2>
+        <div className="container-card">
+            <span>Ref: {Ref} </span>
+            <h3>{tipo} </h3>
+            <h4>{capacidad} </h4>
+            <h2>Precio: {precio} </h2>
+            <img src={imagen} />
         </div>
     )
 }
