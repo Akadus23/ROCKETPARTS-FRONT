@@ -1,12 +1,9 @@
-*{
-  margin: 0;
-}
 
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  /* padding: 2rem; */
+  /* text-align: center; */
 }
 .container{
   width: 100%;
