@@ -38,32 +38,27 @@ export default function SearchBar({onSearch}){
         const ayu =[] 
         helpSearch?.filter((ele)=>{
             if(ele.nombreproducto.toString().toLowerCase().includes(termino.toLowerCase())){
-                return ayu.push(ele.nombreproducto)
+                return ayu.push(ele)
             }
         })
-        const unicos = []
-        for (let i = 0; i < ayu.length; i++) {
-            const valor = ayu[i]
-            if(unicos.indexOf(valor) < 0)
-            unicos.push(valor)
-        }
+
         return setRenderHelp(ayu)
     }
     return(
         <div>
             <div className={style.inputSearch}>
                 <input className={style.barra} type="text" value={bar} onChange={handleChange}/>
-                <button className={style.onSearch} onClick={()=>{onSearch(bar);setBar('')}} type="search">BUSCAR</button>
+                <button className={style.onSearch} onClick={()=>{onSearch(bar,setNoVer);setBar('')}} type="search">BUSCAR</button>
             </div>
             
             {renderHelp?.map((ele)=>{
                 return(
-                    <div className={noVer?style.contSearch:null}>
+                    <div className={noVer?style.contSearch:null} key={ele.id}>
                         <div>
-                           {noVer?<div onClick={takeValueSearch} id={ele} className={style.clickSearch}>{ele}</div>:null} 
+                           {noVer?<div onClick={takeValueSearch} id={ele.nombreproducto} className={style.clickSearch}>{ele.nombreproducto}</div>:null} 
                         </div>
                         <div>
-                           {noVer?<div onClick={takeValueNoSearch} id={ele} className={style.clickNoSearch}>🡬</div>:null} 
+                           {noVer?<div onClick={takeValueNoSearch} id={ele.nombreproducto} className={style.clickNoSearch}>🡬</div>:null} 
                         </div>
                     </div>
                 )
