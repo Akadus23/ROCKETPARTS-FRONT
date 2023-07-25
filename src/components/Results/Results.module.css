@@ -1,0 +1,8 @@
+.container{
+    background-color: rgb(105, 105, 224);
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 80%;
+}

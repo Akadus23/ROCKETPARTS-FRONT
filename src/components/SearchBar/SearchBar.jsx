@@ -17,7 +17,7 @@ export default function SearchBar({onSearch}){
         async function axiosData(){
             const resApi = await axios(`http://localhost:3001/products`)
             if(resApi.data){
-                setHelpSearch(resApi.data)
+                setHelpSearch(resApi.data.productos)
             }
         }
         axiosData()
@@ -35,12 +35,19 @@ export default function SearchBar({onSearch}){
     }
 
     const filtrar = (termino) => {
-        const ayu = helpSearch?.filter((ele)=>{
+        const ayu =[] 
+        helpSearch?.filter((ele)=>{
             if(ele.nombreproducto.toString().toLowerCase().includes(termino.toLowerCase())){
-                return ele.nombreproducto
+                return ayu.push(ele.nombreproducto)
             }
         })
-        return setRenderHelp(ayu)
+        const unicos = []
+        for (let i = 0; i < ayu.length; i++) {
+            const valor = ayu[i]
+            if(unicos.indexOf(valor) < 0)
+            unicos.push(valor)
+        }
+        return setRenderHelp(unicos)
     }
     return(
         <div>
@@ -53,10 +60,10 @@ export default function SearchBar({onSearch}){
                 return(
                     <div className={noVer?style.contSearch:null}>
                         <div>
-                           {noVer?<div onClick={takeValueSearch} id={ele.name} className={style.clickSearch}>{ele.name}</div>:null} 
+                           {noVer?<div onClick={takeValueSearch} id={ele} className={style.clickSearch}>{ele}</div>:null} 
                         </div>
                         <div>
-                           {noVer?<div onClick={takeValueNoSearch} id={ele.name} className={style.clickNoSearch}>🡬</div>:null} 
+                           {noVer?<div onClick={takeValueNoSearch} id={ele} className={style.clickNoSearch}>🡬</div>:null} 
                         </div>
                     </div>
                 )
