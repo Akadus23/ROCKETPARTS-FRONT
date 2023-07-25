@@ -1,14 +1,16 @@
 import "./Card.css";
 
 
-export default function({Ref, tipo, capacidad, precio, imagen}){
+export default function({producto, id, descripcion, color, mainPhoto}){
     return(
         <div className="container-card">
-            <span>Ref: {Ref} </span>
-            <h3>{tipo} </h3>
-            <h4>{capacidad} </h4>
-            <h2>Precio: {precio} </h2>
-            <img src={imagen} />
+            <h3>{producto} </h3>
+            <span>Id: {id} </span>
+            <span>{descripcion} </span>
+            <span>{descripcion} </span>
+            <span>Color: {color} </span>
+            <img src={mainPhoto} alt={producto} />
+            
         </div>
     )
 }

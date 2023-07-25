@@ -1,30 +1,18 @@
-import { useState } from 'react'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from './views/Home/Home'
-import Landing from './views/Landing/Landing';
-import './App.css'
 
-const router = createBrowserRouter([
-  { 
-    path:"/", element:<Landing />
-  },
-  { 
-    path:"/home", element:<Home />
-  }
-]);
-
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import Landing from './components/Landing/Landing';
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-  
-      <div className="container">
-        <RouterProvider router={router} />
-          
-      </div>
-     
-    
+    <div>
+      <Routes>
+        <Route path='/' element={<Landing/>}/>
+        <Route path="/Home" element={<Home/>}/>
+      </Routes>
+    </div>
   )
 }
 
