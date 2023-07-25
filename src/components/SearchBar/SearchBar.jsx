@@ -47,7 +47,7 @@ export default function SearchBar({onSearch}){
             if(unicos.indexOf(valor) < 0)
             unicos.push(valor)
         }
-        return setRenderHelp(unicos)
+        return setRenderHelp(ayu)
     }
     return(
         <div>

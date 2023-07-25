@@ -7,8 +7,8 @@
     flex-direction: row;
     justify-content:end;
     align-items: center;
-    margin: 0 30% 0 30%;
-    max-width: 800px;
+    margin: 0 25% 0 25%;
+    max-width: 900px;
     min-width: 300px;
 }
 .contSearch:hover{

@@ -8,7 +8,7 @@ export default function Results ({ver}){
                     <div className={style.container}>{ele.nombreproducto}</div>
                 )
             })}
-            <div className={style.container}>a</div>
+            
         </div>
     )
 }
