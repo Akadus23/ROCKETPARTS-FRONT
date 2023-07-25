@@ -67,7 +67,7 @@ export default function SearchBar({onSearch}){
                         </div>
                     </div>
                 )
-            }).splice(0,10)}
+            }).splice(0,8)}
         </div>
     )
 }
