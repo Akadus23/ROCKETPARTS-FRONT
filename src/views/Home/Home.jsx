@@ -1,12 +1,28 @@
-import React from "react";
-import Cards from "../../components/Cards/Cards";
-import Navbar from "../../components/Navbar/Navbar";
-
+import { useState} from 'react'
+import SearchBar from "../../components/SearchBar/SearchBar";
+import Results  from '../../components/Results/Results';
+import axios from 'axios'
+import Navbar from '../../components/Navbar/Navbar';
 export default function Home (){
+    const[ ver ,letVer ] = useState([])
+    
+
+    const onSearch = async(bar)=>{
+        const respApi = await axios(`http://localhost:3001/products?prod=${bar}`)
+        console.log(respApi.data);
+        // return letVer(respApi.data)
+    }
     return(
         <div>
-            <Navbar />
-            <Cards />
+            <div>
+               <SearchBar onSearch={onSearch}/> 
+            </div>
+            <div>
+                <Navbar/>
+            </div>
+            <div>
+                <Results ver={ver}/>
+            </div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/Home/Home';
-import Landing from './components/Landing/Landing';
+import Home from './views/Home/Home';
+import Landing from './views/Landing/Landing';
 
 function App() {
 
