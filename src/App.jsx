@@ -1,8 +1,8 @@
 
 import { Route, Routes } from 'react-router-dom';
 import FormCreate from './components/FormCreate/FormCreate';
-import Home from './components/Home/Home';
-import Landing from './components/Landing/Landing';
+import Home from './views/Home/Home';
+import Landing from './views/Landing/Landing';
 import Navbar from './components/Navbar/Navbar';
 import  {useLocation} from 'react-router-dom'
 
@@ -14,8 +14,8 @@ function App() {
       {pathname!=='/'?<Navbar/>:null}
       <Routes>
         <Route path='/' element={<Landing/>}/>
-        <Route path="/Home" element={<Home/>}/>
-        <Route path='/FormCreate' element={<FormCreate/>}/>
+        <Route path="/Tienda" element={<Home/>}/>
+        <Route path='/CrearProducto' element={<FormCreate/>}/>
       </Routes>
     </div>
   )
