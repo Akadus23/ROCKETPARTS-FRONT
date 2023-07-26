@@ -27,11 +27,9 @@ export default function Cards(){
         <div className="container-cards">
             {currentProducts.map(product=>(
                 <Card key={product.id}
-                      id={product.id}
                       producto={product.nombreproducto}
-                      descripcion={product.descproducto}
-                      color={product.colorproducto}
                       mainPhoto={product.fotoprinc}
+                      categoria={product.categoria}
                 />
             ))}
             
