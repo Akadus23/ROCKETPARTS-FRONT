@@ -1,10 +1,8 @@
 import { useState } from 'react'
-// import { useDispatch } from "react-redux";
 import axios from 'axios'
 import SearchBar from "../SearchBar/SearchBar";
 import Results  from '../Results/Results';
 import Cards from '../Cards/Cards';
-// import { getAllProducts } from '../../redux/actions';
 
 
 export default function Home (){
