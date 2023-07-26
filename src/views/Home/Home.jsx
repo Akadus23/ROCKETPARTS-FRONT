@@ -8,9 +8,9 @@ export default function Home (){
     
 
     const onSearch = async(bar)=>{
-        const respApi = await axios(`http://localhost:3001/products?prod=${bar}`)
+        const respApi = await axios(`http://localhost:3001/products/${Number(bar)}`)
         console.log(respApi.data);
-        // return letVer(respApi.data)
+        return letVer([...ver,respApi.data])
     }
     return(
         <div>
