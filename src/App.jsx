@@ -14,8 +14,8 @@ function App() {
       {pathname!=='/'?<Navbar/>:null}
       <Routes>
         <Route path='/' element={<Landing/>}/>
-        <Route path="/Home" element={<Home/>}/>
-        <Route path='/FormCreate' element={<FormCreate/>}/>
+        <Route path="/Tienda" element={<Home/>}/>
+        <Route path='/CrearProducto' element={<FormCreate/>}/>
       </Routes>
     </div>
   )

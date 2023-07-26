@@ -18,9 +18,6 @@ export default function Home (){
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
-                <Navbar/>
-            </div>
-            <div>
                 <Results ver={ver}/>
             </div>
         </div>
