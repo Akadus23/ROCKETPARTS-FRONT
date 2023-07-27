@@ -9,7 +9,8 @@
 }
 
 body{
-    background-color: antiquewhite;
+  overflow-y: hidden;
+
 }
 
 ul, ol {
@@ -73,3 +74,73 @@ ul, ol {
     transform: scale(1.1);
     background-color: (248, 233, 246rgb);
 }
+
+.main-section{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.main-section img{
+  margin-top: 0;
+  width:100%;
+  height: 60vh;
+  border: solid 3px white;
+  box-shadow: 0 0 10px 5px rgba(39, 216, 8, 0.5);
+  border-radius: 20px;
+  margin: 100px;
+}
+h1 {
+  width: 100%;
+  height: 100vh;
+  color: transparent; /* Establecer el color del texto a transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0; /* Asegurarse de que no haya margen en el h1 */
+  padding: 0; /* Asegurarse de que no haya padding en el h1 */
+  background-image: url("https://tm.ibxk.com.br/2021/12/22/22114306286189.jpg?ims=1200x675");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center; /* Centrar el texto en el h1 */
+  -webkit-background-clip: text; /* Agregar el prefijo -webkit- para mayor compatibilidad con navegadores */
+  background-clip: text;
+}
+
+h2 {
+  color: transparent; /* Establecer el color del texto a transparente */
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0; /* Asegurarse de que no haya margen en el h2 */
+  padding: 0; /* Asegurarse de que no haya padding en el h2 */
+  background-image: url("https://tm.ibxk.com.br/2021/12/22/22114306286189.jpg?ims=1200x675");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center; /* Centrar el texto en el h2 */
+  -webkit-background-clip: text; /* Agregar el prefijo -webkit- para mayor compatibilidad con navegadores */
+  background-clip: text;
+}
+
+
+
+.main-section .link{
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  
+ }
+
+ .main-section .link{
+  text-decoration: none;
+ }
