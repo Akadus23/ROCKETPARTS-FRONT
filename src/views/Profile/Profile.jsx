@@ -8,11 +8,11 @@ export default function Profile() {
     const dispatch = useDispatch()
     const { isAuthenticated, user } = useAuth0();
 
-    const usuario = useSelector((state) => state.usuarioDetail)
+    //const usuario = useSelector((state) => state.usuarioDetail)
 
-    useEffect(() => {
-        dispatch(usuarioID(user.sub))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(usuarioID(user.sub))
+    // }, [])
 
     return (
         <h1>Este es el perfil</h1>
