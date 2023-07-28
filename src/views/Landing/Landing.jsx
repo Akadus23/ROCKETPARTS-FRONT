@@ -6,8 +6,6 @@ export default function Landing (){
     return(
         <div class="w-full h-screen">
             
-            <Navbar />
-            
             <img src="" alt="" />
             <h1>Bienvenidos a Rocket-Parts</h1>
             <Link to='/Home'>

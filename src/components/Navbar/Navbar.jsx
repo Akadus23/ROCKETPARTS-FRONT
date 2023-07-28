@@ -1,6 +1,12 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Navbar (){
+
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+
+  
+
     return (
         <div class="mb-10 h-10">
           <header class="w-full h-16 bg-zinc-100 fixed">
@@ -14,6 +20,15 @@ export default function Navbar (){
                 <div  class="items-center font-semibold text-xl flex gap-6" >
                   <a class="no-underline text-gray-900"  href="/Tienda" >Tienda</a>
                   <a class="no-underline text-gray-900" href="/CrearProducto" >Crear Producto</a>
+                </div>
+                <div class="items-center font-semibold text-xl flex gap-6">
+                  { isAuthenticated ? 
+                  <>
+                  <a class='no-underline text-gray-900' href="/Perfil">Perfil</a> 
+                  <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Cerrar Sesión</button> </>:
+                  <button onClick={() => loginWithRedirect()}>Iniciar Sesión</button>
+                  }
+                  
                 </div>
               </div>
             </div>
