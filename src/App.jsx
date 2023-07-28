@@ -5,17 +5,19 @@ import Home from './views/Home/Home';
 import Landing from './views/Landing/Landing';
 import Navbar from './components/Navbar/Navbar';
 import  {useLocation} from 'react-router-dom'
+import Profile from './views/Profile/Profile';
 
 
 function App() {
   const {pathname} = useLocation()
   return (
     <div>
-      {pathname!=='/'?<Navbar/>:null}
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path="/Tienda" element={<Home/>}/>
         <Route path='/CrearProducto' element={<FormCreate/>}/>
+        <Route path='/Perfil' element={<Profile/>}/>
       </Routes>
     </div>
   )
