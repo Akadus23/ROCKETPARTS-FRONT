@@ -4,7 +4,7 @@ import style from './SearchBar.module.css'
 
 export default function SearchBar({onSearch}){
     const[ helpSearch, setHelpSearch ] = useState([])
-    const [renderHelp, setRenderHelp ] = useState([])
+    const[ renderHelp, setRenderHelp ] = useState([])
     const[ bar, setBar ] = useState("")
     const[ noVer, setNoVer ] = useState(true)
     function handleChange(event){
@@ -48,7 +48,7 @@ export default function SearchBar({onSearch}){
         <div>
             <div className={style.inputSearch}>
                 <input className={style.barra} type="text" value={bar} onChange={handleChange}/>
-                <button className={style.onSearch} onClick={()=>{onSearch(bar,setNoVer);setBar('')}} type="search">BUSCAR</button>
+                <button className={style.onSearch} onClick={()=>{onSearch(bar);setBar('');setNoVer(false)}} type="search">BUSCAR</button>
             </div>
             
             {renderHelp?.map((ele)=>{

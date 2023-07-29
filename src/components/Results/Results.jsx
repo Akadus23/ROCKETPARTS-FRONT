@@ -6,10 +6,10 @@ export default function Results ({ver}){
             {ver?.map(ele=>{
                 return(
                     <div className={style.container} key={ele.id}>
-                        <h1>{ele.id}</h1>
                         <h3>{ele.nombreproducto}</h3>
-                        <img src={ele.fotoprinc} alt="" />
-                        <h4>precio:{ele.precioproducto}</h4>
+                        <img className={style.imagenes} src={ele.fotoprinc} alt="" />
+                        <h3>{ele.precioproducto}$</h3>
+                        {ele.disponibproducto?<h3>Disponible</h3>:<h3>No disponible</h3>}
                     </div>
                 )
             })}

@@ -19,6 +19,7 @@ export default function Filters({handleSelect}){
     return(
         <div>
             <select onChange={handleSelect}>
+                <option value="">Todo</option>
                 {renCat?.map((ele)=>{
                     return(
                         <option key={ele} name={ele}>{ele}</option>
