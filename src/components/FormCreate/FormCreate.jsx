@@ -4,6 +4,7 @@ import axios from 'axios'
 import {useDropzone} from 'react-dropzone'
 
 export default function FormCreate(props) {
+  const [errorImagen, setErrorImagen] = useState('')
   const onDrop = useCallback((acceptedFiles,rejectFiles)=>{
     if(acceptedFiles){
       const file = acceptedFiles[0]
@@ -12,7 +13,7 @@ export default function FormCreate(props) {
       formData.append("upload_preset","imagenes")
       axios.post(`https://api.cloudinary.com/v1_1/${name_cloudinary}/image/upload`,formData)
       .then(res=>setCrearProd({... crearProd,fotoprinc:res.data.secure_url}))
-      .catch(error=>console.log('esto no es una imagen'))
+      .catch(error=>setErrorImagen('Error al leer la imagen'))
     }else{
       console.log(rejectFiles);
     }
@@ -22,7 +23,7 @@ export default function FormCreate(props) {
     accept: 'image/png'
   })
   const revertir = ()=>{
-    console.log('hola');
+    setCrearProd({...crearProd,fotoprinc:''})
   }
   const [ crearProd, setCrearProd ] = useState({
     nombreproducto:'',//
@@ -102,14 +103,15 @@ export default function FormCreate(props) {
                   value={crearProd.categoria} 
                   type="text" />
                 </div>
-                <br />
-                <br />
-                {<div className={style.drop} {...getRootProps()}>
+                {!crearProd.fotoprinc?<div className={style.drop} {...getRootProps()}>
                   <input {...getInputProps()}/>
                   {isDragActive?'Agregar imagen':'Esperando imagen'}
-                </div>}
-                {crearProd.fotoprinc?'Imagen agregada con exito':null}
+                </div>:null}
                 <br />
+                {crearProd.fotoprinc?<span className={style.butonInterno} onClick={revertir}>Cambiar foto</span>:null}
+                <br />
+                <br />
+                {crearProd.fotoprinc?'Imagen agregada con exito':errorImagen}
                 <br />
                 <button type='submit'>submit</button>
             </form>

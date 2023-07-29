@@ -13,7 +13,13 @@ export default function Home (){
         try {
             const respApi = await axios(`http://localhost:3001/buscarProductos?prod=${bar}`)
             setError('')
-            return respApi.data.productos?setVer(respApi.data.productos):setError(respApi.data.message) 
+            if(respApi.data.productos){
+                return setVer(respApi.data.productos)
+            }
+            else{
+                setError(`${respApi.data.message.slice(0,-1)} con la busqueda de ${bar}.`)
+                return setVer([])
+            }
         } catch (error) {
             setVer([])
             const resError = error.request.response.split('"mensaje":')[1].split('}')[0].split('"')[1]
@@ -25,12 +31,13 @@ export default function Home (){
         try {
             const resApi = await axios(`http://localhost:3001/buscarProductos?cate=${event.target.value}`)
             if(resApi.data){
-                setVer(resApi.data.productos);
+                setError('')
+                return setVer(resApi.data.productos);
             }
         } catch (error) {
-            setVer([])
             const resError = error.request.response.split('"mensaje":')[1].split('}')[0].split('"')[1]
-            return setError(resError)
+            setError(resError)
+            return setVer([])
         }
     }
     return(
@@ -42,11 +49,12 @@ export default function Home (){
                 <Filters handleSelect={handleSelect}/>
             </div>
             <div>
-                {ver?<Results ver={ver}/>:null}
-            </div>
-            <div>
                 {error?<ErrorSearch error={error}/>:null}
             </div>
+            <div>
+                {ver?<Results ver={ver}/>:null}
+            </div>
+            
         </div>
     )
 }
