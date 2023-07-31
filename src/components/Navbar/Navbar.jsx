@@ -9,7 +9,7 @@ export default function Navbar (){
 
     return (
         <div class="mb-10 h-10">
-          <header class="w-full h-16 bg-zinc-100 fixed">
+          <header class="w-full h-16 bg-gray-600 fixed">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2 ml-5 mt-3 content-center">
                 <a href="/" >
