@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
 
-export default function Filters({handleSelect}){
+export default function Filters({handleSelect,limpiar}){
     const[renCat, setRenCat] =useState([])
     useEffect(()=>{
         async function resAxios(){
@@ -18,8 +18,8 @@ export default function Filters({handleSelect}){
     },[])
     return(
         <div>
+            <button onClick={limpiar}>ver paginado</button>
             <select onChange={handleSelect}>
-                <option value="">Todo</option>
                 {renCat?.map((ele)=>{
                     return(
                         <option key={ele} name={ele}>{ele}</option>

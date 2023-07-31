@@ -49,7 +49,6 @@ export const getProductos = () =>{
     return async function(dispatch){
         try {
             const json = await axios.get('http://localhost:3001/products')
-            console.log(json.data);
             return dispatch({
                 type: GET_ALL_PRODUCTS,
                 payload: json.data.productos
