@@ -9,7 +9,8 @@
     margin-right: 15%;
     border-radius: 10px;
     width: 50%;
-    max-height: 400px;
+    min-height: 500px;
+    max-height: 800px;
 }
 .imagenes{
     max-width: 200px;
