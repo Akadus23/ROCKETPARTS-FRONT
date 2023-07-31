@@ -1,9 +1,10 @@
-import { ADD_CARRITO,REMOVE_CARRITO } from "./actions"
+import { ADD_CARRITO,REMOVE_CARRITO,BUSCAR_PERSONAJE_ID } from "./actions"
 
 const initialState = {
     products: [],
     usuarioDetail: [],
-    carritoCompra:[]
+    carritoCompra:[],
+    detail:{}
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -13,6 +14,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             usuarioDetail: payload
         }
+        case BUSCAR_PERSONAJE_ID:
+            return{...state,detail:payload}
         case ADD_CARRITO:
             return {...state,carritoCompra:[...state.carritoCompra,payload]}
         case REMOVE_CARRITO:

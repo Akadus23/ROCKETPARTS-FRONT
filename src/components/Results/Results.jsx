@@ -2,6 +2,7 @@ import style from './Results.module.css'
 import { useDispatch, useSelector} from 'react-redux'
 import { addCarrito, removeCarrito} from '../../redux/actions';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Results ({ver}){
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function Results ({ver}){
                             <button onClick={()=>añadir(ele)}>Añadir a carrito</button>:
                             <button onClick={()=>quitar(ele.id)}>Quitar de carrito</button>} 
                         </div>:null}
+                        <Link to={`/Detalle/${ele.id}`}><button>ver más</button></Link>
                     </div>
                 )
             })}
