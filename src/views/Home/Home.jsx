@@ -4,6 +4,7 @@ import Results  from '../../components/Results/Results';
 import ErrorSearch from '../../components/ErrorSearch/ErrorSearch';
 import axios from 'axios'
 import Filters from '../../components/Filters/Filters';
+import { Link } from 'react-router-dom';
 export default function Home (){
     const[ ver ,setVer ] = useState([])
     const[ error, setError ] = useState('')
@@ -42,6 +43,7 @@ export default function Home (){
     }
     return(
         <div>
+            <Link to='/Carrito'><button>ver carrito</button></Link>
             <div>
                <SearchBar onSearch={onSearch}/> 
             </div>
