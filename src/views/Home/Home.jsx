@@ -5,6 +5,7 @@ import Results  from '../../components/Results/Results';
 import ErrorSearch from '../../components/ErrorSearch/ErrorSearch';
 import axios from 'axios'
 import Filters from '../../components/Filters/Filters';
+import { Link } from 'react-router-dom';
 import { getProductos } from '../../redux/actions';
 import Pagination from '../../components/Pagination/Pagination';
 import Card from '../../components/Card/Card';
@@ -69,6 +70,7 @@ export default function Home (){
     }
     return(
         <div>
+            <Link to='/Carrito'><button>ver carrito</button></Link>
             <div>
                <SearchBar onSearch={onSearch}/> 
             </div>
