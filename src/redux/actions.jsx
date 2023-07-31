@@ -16,10 +16,11 @@ export function usuarioID(sub){
 export const getProductos = () =>{
     return async function(dispatch){
         try {
-            const json = await axios('http://localhost:3001/products')
+            const json = await axios.get('http://localhost:3001/products')
+            console.log(json.data);
             return dispatch({
                 type: GET_ALL_PRODUCTS,
-                payload: json.data
+                payload: json.data.productos
             })
         } catch (error) {
             console.log(error);

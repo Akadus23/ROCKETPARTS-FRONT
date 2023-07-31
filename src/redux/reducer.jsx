@@ -3,9 +3,8 @@ import {
  } from "./actions";
 
 const initialState = {
-    products: [],
+    Productos: [],
     usuarioDetail: [],
-    
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -19,8 +18,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case GET_ALL_PRODUCTS:
         return {
             ...state,
-            products: payload,
+            Productos: payload,
         };
+        default:
+            return {...state}
     };
 
         
