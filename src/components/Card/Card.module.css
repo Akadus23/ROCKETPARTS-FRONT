@@ -1,0 +1,17 @@
+.container{
+    background-color: rgb(105, 105, 224);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border: 1px solid black;
+    margin-top: 1%;
+    margin-right: 15%;
+    border-radius: 10px;
+    width: 50%;
+    max-height: 400px;
+}
+.imagenes{
+    max-width: 200px;
+    max-height: 200px;
+}
