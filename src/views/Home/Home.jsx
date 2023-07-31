@@ -18,8 +18,6 @@ export default function Home (){
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(12);
 
-    console.log(allProducts, "estado");
-
     const indexLastProducts = currentPage * productsPerPage;
     const indexFirstProducts = indexLastProducts - productsPerPage;
     const currentProducts = allProducts?.slice(indexFirstProducts, indexLastProducts)
@@ -68,6 +66,10 @@ export default function Home (){
             return setVer([])
         }
     }
+    const limpiar = ()=>{
+        setError('')
+        setVer([])
+    }
     return(
         <div>
             <Link to='/Carrito'><button>ver carrito</button></Link>
@@ -75,15 +77,16 @@ export default function Home (){
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
+                <Filters limpiar={limpiar} handleSelect={handleSelect}/>
+            </div>
+            {!ver.length&&!error&&<div>
                 <Pagination 
                     productsPerPage={productsPerPage}
                     allProducts={allProducts.length}
                     pagination={pagination}
                 />
-            </div>
-            <div>
-                <Filters handleSelect={handleSelect}/>
-            </div>
+            </div>}
+            
             <div>
                 {error?<ErrorSearch error={error}/>:null}
             </div>
@@ -91,12 +94,14 @@ export default function Home (){
                 {ver?<Results ver={ver}/>:null
                 }
             </div>
-            <div>
+            {!ver.length&&!error&&<div>
             { currentProducts?.map((e, k) => {
                         if(e.nombreproducto){
                             return(
                                 <div key={k} >
-                                    <Card 
+                                    <Card
+                                    all={e}
+                                    dispo={e.disponibproducto}
                                     key={e.id}
                                     id={e.id}
                                     nombre={e.nombreproducto}
@@ -109,7 +114,7 @@ export default function Home (){
                             )
                         }
                     }) }
-            </div>
+            </div>}
             
             
         </div>
