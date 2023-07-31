@@ -15,7 +15,7 @@ function App() {
   const {pathname} = useLocation()
   return (
     <div>
-      <Navbar/>
+      {pathname!=='/'&&<Navbar/>}
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path="/Tienda" element={<Home/>}/>

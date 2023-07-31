@@ -46,8 +46,9 @@ export function Carrito (){
     // }
     return(
         <div>
+            {elementos.length?
             <div>
-                {elementos?.map((ele)=>{
+                {elementos.map((ele)=>{
                     ayu +=ele.precioproducto
                     return(
                         <div className={style.container} key={ele.id}>
@@ -58,19 +59,21 @@ export function Carrito (){
                         </div>
                     )
                 })}
-            </div>
+            </div>:<h1>Aun no agregas nada a tu carrito</h1>}
             <br />
             <br />
-            <div>
+            {elementos.length?<div>
                 Total:{mostrar||ayu}
-            </div>
+            </div>:null}
             <br />
             <br />
-            <button onClick={handleBuy}>PAGAR</button>
-            {preferenceId && <Wallet initialization ={{ preferenceId }}/>}
+            {elementos.length?<div>
+                <button onClick={handleBuy}>PAGAR</button>
+                {preferenceId && <Wallet initialization ={{ preferenceId }}/>}
+            </div>:null}
             <br />
             <br />
-            <Link to='/Tienda'>Volver</Link>
+            <Link to='/Tienda'><button>Volver</button></Link>
         </div>
     )
 }

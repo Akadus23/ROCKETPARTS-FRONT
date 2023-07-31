@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react'
 import axios from 'axios'
 import {useDropzone} from 'react-dropzone'
 
-export default function FormCreate(props) {
+export default function FormCreate() {
   const [errorImagen, setErrorImagen] = useState('')
   const onDrop = useCallback((acceptedFiles,rejectFiles)=>{
     if(acceptedFiles){
@@ -53,7 +53,6 @@ export default function FormCreate(props) {
         categoria:crearProd.categoria
       })
       alert(`Producto ${crearProd.nombreproducto} creado exitosamente`)
-      console.log(api.data);
       return api.data
     } catch (error) {
       console.log(error.message);
