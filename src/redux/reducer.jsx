@@ -1,8 +1,10 @@
 import { 
-    GET_ALL_PRODUCTS
+    GET_ALL_PRODUCTS,
+    ADD_CARRITO,
+    REMOVE_CARRITO,
+    BUSCAR_PERSONAJE_ID
  } from "./actions";
 
-import { ADD_CARRITO,REMOVE_CARRITO,BUSCAR_PERSONAJE_ID } from "./actions"
 
 const initialState = {
     Productos: [],
@@ -24,14 +26,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             Productos: payload,
         };
-        default:
-            return {...state}
         case BUSCAR_PERSONAJE_ID:
             return{...state,detail:payload}
         case ADD_CARRITO:
             return {...state,carritoCompra:[...state.carritoCompra,payload]}
         case REMOVE_CARRITO:
             return {...state,carritoCompra:state.carritoCompra.filter((ele)=>ele.id !== payload)}
+        
         default:
             return{...state}
     };
