@@ -77,7 +77,7 @@ export default function Home (){
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
-                <Filters limpiar={limpiar} handleSelect={handleSelect}/>
+                <Filters ver={ver}limpiar={limpiar} handleSelect={handleSelect}/>
             </div>
             {!ver.length&&!error&&<div>
                 <Pagination 

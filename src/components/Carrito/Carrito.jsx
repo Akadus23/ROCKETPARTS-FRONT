@@ -9,13 +9,13 @@ import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
 export function Carrito (){
     const elementos = useSelector(state=>state.carritoCompra)
     const [preferenceId, setPreferenceId] = useState(null)
-    initMercadoPago('YOUR_PUBLIC_KEY');
+    initMercadoPago('TEST-c400579c-6b28-4f81-b113-f46d83d791dd');
     let ayu = 0
     const createPreference = async()=>{
         try {
-            const response = await axios.post('',{
+            const response = await axios.post('http://localhost:3001/create-order',{
                 description:'Compra multiples productos',
-                price:ayu,
+                price:Number(ayu),
                 quantity:1,
             })
             const {id} = response.data;
