@@ -2,7 +2,10 @@ import {
     GET_ALL_PRODUCTS,
     ADD_CARRITO,
     REMOVE_CARRITO,
-    BUSCAR_PERSONAJE_ID
+    BUSCAR_PERSONAJE_ID,
+    PRECIO_TOTAL,
+    SUMAR_CARRITO,
+    RESTAR_CARRITO
  } from "./actions";
 
 
@@ -10,7 +13,8 @@ const initialState = {
     Productos: [],
     usuarioDetail: [],
     carritoCompra:[],
-    detail:{}
+    detail:{},
+    total:0
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -20,7 +24,21 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             usuarioDetail: payload
         };
-
+        case PRECIO_TOTAL:
+            return{
+                ...state,
+                total:payload
+            }
+        case SUMAR_CARRITO:
+            return{
+                ...state,
+                total:state.total + payload
+            }
+        case RESTAR_CARRITO:
+            return{
+                ...state,
+                total:state.total - payload
+            }
         case GET_ALL_PRODUCTS:
         return {
             ...state,

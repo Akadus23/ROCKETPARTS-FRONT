@@ -2,6 +2,9 @@ import axios from "axios"
 export const ADD_CARRITO = 'ADD_CARRITO'
 export const REMOVE_CARRITO = 'REMOVE_CARRITO'
 export const BUSCAR_PERSONAJE_ID = 'BUSCAR_PERSONAJE_ID'
+export const PRECIO_TOTAL = 'PRECIO_TOTAL'
+export const SUMAR_CARRITO = 'SUMAR_CARRITO'
+export const RESTAR_CARRITO = 'RESTAR_CARRITO'
 
 export const buscarId = (id)=>{
     return async function(dispatch){
@@ -24,6 +27,28 @@ export const addCarrito = (char) =>{
     return {
         type:ADD_CARRITO,
         payload:response,
+    }
+}
+export const precioInicial = (carrito)=>{
+    let total = 0
+    carrito.map(ele=>{
+        total +=ele.precioproducto
+    })
+    return {
+        type:PRECIO_TOTAL,
+        payload:total
+    }
+}
+export const sumarCarrito = (valor)=>{
+    return{
+        type:SUMAR_CARRITO,
+        payload:valor
+    }
+}
+export const restarCarrito = (valor)=>{
+    return{
+        type:RESTAR_CARRITO,
+        payload:valor
     }
 }
 export const removeCarrito = (id) =>{

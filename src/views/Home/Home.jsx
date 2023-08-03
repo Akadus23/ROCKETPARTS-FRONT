@@ -17,6 +17,8 @@ export default function Home (){
     const allProducts = useSelector((state) => state.Productos)
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(12);
+    const[ ver ,setVer ] = useState([])
+    const[ error, setError ] = useState('')
 
     const indexLastProducts = currentPage * productsPerPage;
     const indexFirstProducts = indexLastProducts - productsPerPage;
@@ -25,16 +27,37 @@ export default function Home (){
     const pagination = pagesNumber => {
         setCurrentPage(pagesNumber)
     }
-
-    const[ ver ,setVer ] = useState([])
-    const[ error, setError ] = useState('')
-
-    
-    
     useEffect(() => {
         dispatch(getProductos())
     }, [dispatch])
-
+    const disponibles = async() =>{
+        if(ver.length){
+            if(ver.filter(ele=>ele.disponibproducto>=1).length){
+              setVer(ver.filter(ele=>ele.disponibproducto>=1))
+              setError('')  
+            }else{
+                setVer([])
+              setError('No se encontraron productos disponibles en tu busqueda')  
+            }
+        }else{
+            try {
+               const resApi = await axios('http://localhost:3001/disponible')
+               setError('')
+               return setVer(resApi.data)
+            } catch (error) {
+                setError(error.message)
+            }
+            
+        }
+    }
+    const noDisponibles = async()=>{
+        try {
+            const resApi = await axios('http://localhost:3001/nodisponible')
+            return setVer(resApi.data)
+         } catch (error) {
+             setError(error.message)
+         }
+    }
     const onSearch = async(bar)=>{
         try {
             const respApi = await axios(`http://localhost:3001/buscarProductos?prod=${bar}`)
@@ -53,22 +76,94 @@ export default function Home (){
         }
         
     }
-    const handleSelect = async(event)=>{
-        try {
-            const resApi = await axios(`http://localhost:3001/buscarProductos?cate=${event.target.value}`)
-            if(resApi.data){
-                setError('')
-                return setVer(resApi.data.productos);
+    const handleSelect = async(event,setManejoFilt)=>{
+        setManejoFilt(false)
+            try {
+                const resApi = await axios(`http://localhost:3001/buscarProductos?cate=${event.target.value}`)
+                if(resApi.data){
+                    setError('')
+                    event.target.value = event.target[0].value
+                    return setVer(resApi.data.productos);
+                }
+            } catch (error) {
+                const resError = error.request.response.split('"mensaje":')[1].split('}')[0].split('"')[1]
+                setError(resError)
+                return setVer([])
             }
-        } catch (error) {
-            const resError = error.request.response.split('"mensaje":')[1].split('}')[0].split('"')[1]
-            setError(resError)
-            return setVer([])
-        }
+    }
+    const handleSelectMarcas = async(event,manejoFilt,setManejoFilt)=>{
+        if(manejoFilt){
+            try {
+                const resApi = await axios(`http://localhost:3001/buscarProductos?marca=${event.target.value}`)
+                if(resApi.data){
+                    setError('')
+                    event.target.value = event.target[0].value
+                    return setVer(resApi.data.productos);
+                }
+            } catch (error) {
+                const resError = error.request.response.split('"mensaje":')[1].split('}')[0].split('"')[1]
+                event.target.value = event.target[0].value
+                setError(resError)
+                return setVer([])
+            }  
+        }else{
+            if(ver.filter(ele=>ele.marca.toLowerCase() === event.target.value.toLowerCase()).length){
+                setVer(ver.filter(ele=>ele.marca.toLowerCase() === event.target.value.toLowerCase()))
+                event.target.value = event.target[0].value
+                setManejoFilt(true)
+            }else{
+                setVer([])
+                event.target.value = event.target[0].value
+                setError('No se encontraron productos con estas especificaciones')
+            }
+        }   
     }
     const limpiar = ()=>{
         setError('')
         setVer([])
+    }
+    const ordenarAlf = (items,getter,orden)=>{
+        if(ver.length){
+            setVer([])
+            items.sort((a, b)=>{
+                const first = getter(a);
+                const second = getter(b);
+                const compare = first.localeCompare(second)
+                return orden? compare: -compare
+            })
+            setError('')
+            setVer(items)
+            return aplicar()
+        }else{
+
+        }
+    }
+    const ordenarNum = (items,getter,orden)=>{
+        if(ver.length){
+            setVer([])
+            items.sort((a, b)=>{
+                const first = Number(getter(a))
+                const second = Number(getter(b))
+                const compare = first-second
+                return orden?compare:-compare
+            })
+            setError('')
+            setVer(items)
+            return aplicar()
+        }else{
+            
+        }
+    }
+    const aplicar = ()=>{
+        if(ver.length){
+            if(ver.filter(ele=>ele).length){
+              setVer(ver.filter(ele=>ele))
+              setError('')
+            }else{
+                setVer([])
+              setError('No se encontraron productos disponibles en tu busqueda')  
+            }
+        }
     }
     return(
         <div>
@@ -77,7 +172,7 @@ export default function Home (){
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
-                <Filters ver={ver}limpiar={limpiar} handleSelect={handleSelect}/>
+                <Filters ordenarNum={ordenarNum} ordenarAlf={ordenarAlf} noDisponibles={noDisponibles} handleSelectMarcas={handleSelectMarcas} disponibles={disponibles} ver={ver} limpiar={limpiar} handleSelect={handleSelect}/>
             </div>
             {!ver.length&&!error&&<div>
                 <Pagination 
@@ -86,7 +181,6 @@ export default function Home (){
                     pagination={pagination}
                 />
             </div>}
-            
             <div>
                 {error?<ErrorSearch error={error}/>:null}
             </div>
@@ -115,8 +209,6 @@ export default function Home (){
                         }
                     }) }
             </div>}
-            
-            
         </div>
     )
 }
