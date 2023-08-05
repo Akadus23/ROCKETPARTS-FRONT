@@ -5,7 +5,9 @@ import {
     BUSCAR_PERSONAJE_ID,
     PRECIO_TOTAL,
     SUMAR_CARRITO,
-    RESTAR_CARRITO
+    RESTAR_CARRITO,
+    PRODUCTOS_A_COMPRAR,
+    PRODUCTOS_RETIRADOS
  } from "./actions";
 
 
@@ -14,7 +16,8 @@ const initialState = {
     usuarioDetail: [],
     carritoCompra:[],
     detail:{},
-    total:0
+    total:0,
+    comprados:[]
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -44,6 +47,19 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             Productos: payload,
         };
+        case PRODUCTOS_A_COMPRAR:
+            return{
+                ...state,
+                comprados:[...state.comprados,payload]
+            }
+        case PRODUCTOS_RETIRADOS:
+            const ayu = state.comprados
+            const index = ayu.indexOf(payload)
+            ayu.splice(index,1)
+            return{
+                ...state,
+                comprados:ayu
+            }
         case BUSCAR_PERSONAJE_ID:
             return{...state,detail:payload}
         case ADD_CARRITO:

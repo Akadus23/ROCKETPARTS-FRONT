@@ -33,6 +33,7 @@ export default function Detail() {
                         <button onClick={()=>añadir(detail)}>Añadir a carrito</button>:
                         <button onClick={()=>quitar(Number(detail.id))}>Quitar de carrito</button>}
                     </div>:null}
+                    <Link to={`/Editar/${detail.id}`} ><button>Editar</button></Link>
                 </div>
             :null}
         </div>

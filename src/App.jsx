@@ -9,6 +9,7 @@ import Profile from './views/Profile/Profile';
 import { Carrito } from './components/Carrito/Carrito';
 import Detail from './components/Detail/Detail';
 import About from './components/About/About';
+import FormEdit from './components/FormEdit/FormEdit'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/Carrito' element={<Carrito/>}/>
         <Route path='/Detalle/:id' element={<Detail/>}/>
         <Route path='/About' element={<About/>}/>
+        <Route path='/Editar/:id' element={<FormEdit/>}/>
       </Routes>
     </div>
   )
