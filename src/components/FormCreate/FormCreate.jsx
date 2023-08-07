@@ -14,10 +14,10 @@ import {
 export default function FormCreate() {
   const [errorImagen, setErrorImagen] = useState('')
   const [ crearProd, setCrearProd ] = useState({
-    nombreproducto:'',//
-    descproducto:'',//
-    precioproducto:0,//
-    disponibproducto:0,//
+    nombreproducto:'',
+    descproducto:'',
+    precioproducto:'',
+    disponibproducto:'',
     categoria:'',
     marca:'',
   })
@@ -28,7 +28,7 @@ export default function FormCreate() {
     if(crearProd.nombreproducto && crearProd.descproducto && fotoprinc && crearProd.precioproducto && crearProd.categoria && crearProd.marca && crearProd.disponibproducto){
       if(crearProd.nombreproducto.length > 20 || crearProd.nombreproducto.length < 3) return alert(`Error en el Nombre`)
       if(crearProd.precioproducto > 2000 || Number(crearProd.precioproducto) === 0)return alert(`Error en el precio`)
-      if(!Number(crearProd.disponibproducto)) return alert('Error en Productos disponibles')
+      if(!Number(crearProd.disponibproducto) || !Number.isInteger(Number(crearProd.disponibproducto))) return alert('Error en Productos disponibles')
       if(crearProd.categoria.length > 15 || crearProd.categoria.length < 3) return alert('Error en Categoria')
       if(crearProd.marca.length > 20 || crearProd.marca.length < 3) return alert('Error en Marca')
       if(crearProd.descproducto.length > 130 || crearProd.descproducto.length < 20)return alert('Error en Descripción')

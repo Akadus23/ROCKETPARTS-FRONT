@@ -1,0 +1,15 @@
+.drop{
+    border: 1px solid black;
+    padding: 10px;
+    cursor: pointer;
+}
+.drop:hover{
+    border: 1px solid red;
+}
+.butonInterno{
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 2px;
+    border-radius: 3px;
+    background-color: aliceblue;
+}

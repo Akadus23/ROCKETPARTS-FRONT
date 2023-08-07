@@ -5,6 +5,12 @@ export const BUSCAR_PERSONAJE_ID = 'BUSCAR_PERSONAJE_ID'
 export const PRECIO_TOTAL = 'PRECIO_TOTAL'
 export const SUMAR_CARRITO = 'SUMAR_CARRITO'
 export const RESTAR_CARRITO = 'RESTAR_CARRITO'
+export const PRODUCTOS_A_COMPRAR = 'PRODUCTOS_A_COMPRAR'
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
+export const PRODUCTOS_RETIRADOS = 'PRODUCTOS_RETIRADOS'
+export const COMPRA_EXITOSA = 'COMPRA_EXITOSA'
+export const QUITAR_STOCK = 'QUITAR_STOCK'
+export const LIMPIAR_COMPRADOS = 'LIMPIAR_COMPRADOS'
 
 export const buscarId = (id)=>{
     return async function(dispatch){
@@ -39,6 +45,18 @@ export const precioInicial = (carrito)=>{
         payload:total
     }
 }
+export const productosAComprar = (id)=>{
+    return{
+        type:PRODUCTOS_A_COMPRAR,
+        payload:id
+    }
+}
+export const productosRetirados = (id)=>{
+    return{
+        type:PRODUCTOS_RETIRADOS,
+        payload:id
+    }
+}
 export const sumarCarrito = (valor)=>{
     return{
         type:SUMAR_CARRITO,
@@ -57,9 +75,6 @@ export const removeCarrito = (id) =>{
         payload:id
     }
 }
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
-
-
 export function usuarioID(sub){
     return async function (dispatch) {
         const json = await axios(`/usuarios/${sub}`)
@@ -69,7 +84,6 @@ export function usuarioID(sub){
         })
     }
 }
-
 export const getProductos = () =>{
     return async function(dispatch){
         try {
@@ -81,5 +95,22 @@ export const getProductos = () =>{
         } catch (error) {
             console.log(error);
         }
+    }
+}
+export const limpiarCarrito = ()=>{
+    return{
+        type:COMPRA_EXITOSA
+    }
+}
+export const quitarStock = (id)=>{
+    const res = axios.put(`http://localhost:3001/restar/${id}`)
+    res.data
+    return{
+        type:QUITAR_STOCK
+    }
+}
+export const limpiarComprados =()=>{
+    return{
+        type:LIMPIAR_COMPRADOS
     }
 }

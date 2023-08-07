@@ -27,7 +27,10 @@ export function validtade_Precio(estado,setErrors) {
 }
 export function validtade_Cantidad(estado,setErrors) {
     if(!Number(estado))setErrors('Ingrese la cantidad de productos a la venta')
-    else setErrors('')
+    else{
+        if(!Number.isInteger(Number(estado))) setErrors('Debe ser un numero entero')
+        else setErrors('')
+    }
 }
 export function validtade_Categoria(estado,setErrors) {
     if(!estado) setErrors('Ingresa la categoria a la que pertenece tu producto')
