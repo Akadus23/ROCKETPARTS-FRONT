@@ -1,6 +1,6 @@
 import { useDispatch,useSelector } from "react-redux"
 import { useEffect,useCallback,useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { buscarId } from "../../redux/actions";
 import { useDropzone } from "react-dropzone";
 import style from './FormEdit.module.css'
@@ -13,6 +13,7 @@ import {
   validate_edit_pd,
   validate_edit_desc
 } from './ValidationEdit'
+import {URL,name_cloudinary} from '../../constantes'
 export default function FormCreate(params) {
     const {id} = useParams()
     const dispatch = useDispatch();
@@ -33,7 +34,6 @@ export default function FormCreate(params) {
     const [errorMarca,setErrorMarca] = useState('')
     const [errorPD,setErrorPD] = useState('')
     const [errorDesc,setErrorDesc] = useState('')
-    const name_cloudinary = 'dpssouwww'
     const onSubmit = async(event)=>{
         event.preventDefault()
         if(!editProd.nombreproducto && !editProd.precioproducto && !editProd.categoria && !editProd.marca && !editProd.descproducto && !editProd.disponibproducto && !fotoprinc){
@@ -46,13 +46,13 @@ export default function FormCreate(params) {
         if(editProd.descproducto.length > 130 || editProd.descproducto.length < 20 && editProd.descproducto.length !== 0)return alert('Error en Descripción')
         if(!Number.isInteger(Number(editProd.disponibproducto))||Number(editProd.disponibproducto) === 0 && editProd.disponibproducto !== '')return alert('Error en Productos disponibles')
         try {
-            const res = await axios.put(`http://localhost:3001/editarProducto/${detalle.id}`,{
+            const res = await axios.put(`${URL}editarProducto/${detalle.id}`,{
                 nombreproducto:editProd.nombreproducto || detalle.nombreproducto,
                 descproducto:editProd.descproducto || detalle.descproducto,
                 fotoprinc: fotoprinc || detalle.fotoprinc,
                 precioproducto: editProd.precioproducto || detalle.precioproducto,
-                categoria: editProd.categoria || detalle.categoria,
-                marca:editProd.marca || detalle.marca,
+                categoria: editProd.categoria.toUpperCase() || detalle.categoria.toUpperCase(),
+                marca:editProd.marca.toUpperCase() || detalle.marca.toUpperCase(),
                 disponibproducto:editProd.disponibproducto || detalle.disponibproducto
             })
             alert('Producto modificado')
@@ -150,8 +150,7 @@ export default function FormCreate(params) {
                 <br />
                 <button type="submit">Editar</button>
             </form>
-
-
+            <Link to='/Tienda'><button>volver a tienda</button></Link>
         </div>
     )
 }

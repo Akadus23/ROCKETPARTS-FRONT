@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { getProductos } from '../../redux/actions';
 import Pagination from '../../components/Pagination/Pagination';
 import Card from '../../components/Card/Card';
-
+import { URL } from '../../constantes';
 
 export default function Home (){
 
@@ -41,7 +41,7 @@ export default function Home (){
             }
         }else{
             try {
-               const resApi = await axios('http://localhost:3001/disponible')
+               const resApi = await axios(`${URL}disponible`)
                setError('')
                return setVer(resApi.data)
             } catch (error) {
@@ -52,7 +52,7 @@ export default function Home (){
     }
     const noDisponibles = async()=>{
         try {
-            const resApi = await axios('http://localhost:3001/nodisponible')
+            const resApi = await axios(`${URL}nodisponible`)
             return setVer(resApi.data)
          } catch (error) {
              setError(error.message)
@@ -60,7 +60,7 @@ export default function Home (){
     }
     const onSearch = async(bar)=>{
         try {
-            const respApi = await axios(`http://localhost:3001/buscarProductos?prod=${bar}`)
+            const respApi = await axios(`${URL}buscarProductos?prod=${bar}`)
             setError('')
             if(respApi.data.productos){
                 return setVer(respApi.data.productos)
@@ -79,7 +79,7 @@ export default function Home (){
     const handleSelect = async(event,setManejoFilt)=>{
         setManejoFilt(false)
             try {
-                const resApi = await axios(`http://localhost:3001/buscarProductos?cate=${event.target.value}`)
+                const resApi = await axios(`${URL}buscarProductos?cate=${event.target.value}`)
                 if(resApi.data){
                     setError('')
                     event.target.value = event.target[0].value
@@ -94,7 +94,7 @@ export default function Home (){
     const handleSelectMarcas = async(event,manejoFilt,setManejoFilt)=>{
         if(manejoFilt){
             try {
-                const resApi = await axios(`http://localhost:3001/buscarProductos?marca=${event.target.value}`)
+                const resApi = await axios(`${URL}buscarProductos?marca=${event.target.value}`)
                 if(resApi.data){
                     setError('')
                     event.target.value = event.target[0].value
@@ -172,7 +172,7 @@ export default function Home (){
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
-                <Filters ordenarNum={ordenarNum} ordenarAlf={ordenarAlf} noDisponibles={noDisponibles} handleSelectMarcas={handleSelectMarcas} disponibles={disponibles} ver={ver} limpiar={limpiar} handleSelect={handleSelect}/>
+                <Filters error={error} ordenarNum={ordenarNum} ordenarAlf={ordenarAlf} noDisponibles={noDisponibles} handleSelectMarcas={handleSelectMarcas} disponibles={disponibles} ver={ver} limpiar={limpiar} handleSelect={handleSelect}/>
             </div>
             {!ver.length&&!error&&<div>
                 <Pagination 

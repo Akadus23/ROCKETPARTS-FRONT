@@ -5,6 +5,7 @@ import style from './Carrito.module.css'
 import axios from "axios"
 import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
 import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
+import { URL } from "../../constantes"
 
 export function Carrito (){
     const elementos = useSelector(state=>state.carritoCompra)
@@ -15,7 +16,7 @@ export function Carrito (){
     const dispatch = useDispatch()
     const createPreference = async()=>{
         try {
-            const response = await axios.post('http://localhost:3001/create-order',{
+            const response = await axios.post(`${URL}create-order`,{
                 description:'Compra multiples productos',
                 price:Number(total),
                 quantity:1,

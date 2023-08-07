@@ -10,6 +10,7 @@ import {
   validtade_Categoria,
   validtade_Marca
 } from './Validation'
+import { URL ,name_cloudinary} from '../../constantes'
 
 export default function FormCreate() {
   const [errorImagen, setErrorImagen] = useState('')
@@ -22,7 +23,6 @@ export default function FormCreate() {
     marca:'',
   })
   const [fotoprinc,setFotoprinc] = useState('')
-  const name_cloudinary = 'dpssouwww'
   async function submit(event){
     event.preventDefault()
     if(crearProd.nombreproducto && crearProd.descproducto && fotoprinc && crearProd.precioproducto && crearProd.categoria && crearProd.marca && crearProd.disponibproducto){
@@ -33,7 +33,7 @@ export default function FormCreate() {
       if(crearProd.marca.length > 20 || crearProd.marca.length < 3) return alert('Error en Marca')
       if(crearProd.descproducto.length > 130 || crearProd.descproducto.length < 20)return alert('Error en Descripción')
       try {
-      const api = await axios.post('http://localhost:3001/products',{
+      const api = await axios.post(`${URL}products`,{
         nombreproducto:crearProd.nombreproducto,
         descproducto:crearProd.descproducto,
         fotoprinc:fotoprinc,
