@@ -8,6 +8,9 @@ export const RESTAR_CARRITO = 'RESTAR_CARRITO'
 export const PRODUCTOS_A_COMPRAR = 'PRODUCTOS_A_COMPRAR'
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS"
 export const PRODUCTOS_RETIRADOS = 'PRODUCTOS_RETIRADOS'
+export const COMPRA_EXITOSA = 'COMPRA_EXITOSA'
+export const QUITAR_STOCK = 'QUITAR_STOCK'
+export const LIMPIAR_COMPRADOS = 'LIMPIAR_COMPRADOS'
 
 export const buscarId = (id)=>{
     return async function(dispatch){
@@ -92,5 +95,22 @@ export const getProductos = () =>{
         } catch (error) {
             console.log(error);
         }
+    }
+}
+export const limpiarCarrito = ()=>{
+    return{
+        type:COMPRA_EXITOSA
+    }
+}
+export const quitarStock = (id)=>{
+    const res = axios.put(`http://localhost:3001/restar/${id}`)
+    res.data
+    return{
+        type:QUITAR_STOCK
+    }
+}
+export const limpiarComprados =()=>{
+    return{
+        type:LIMPIAR_COMPRADOS
     }
 }

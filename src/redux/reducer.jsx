@@ -7,7 +7,10 @@ import {
     SUMAR_CARRITO,
     RESTAR_CARRITO,
     PRODUCTOS_A_COMPRAR,
-    PRODUCTOS_RETIRADOS
+    PRODUCTOS_RETIRADOS,
+    COMPRA_EXITOSA,
+    QUITAR_STOCK,
+    LIMPIAR_COMPRADOS,
  } from "./actions";
 
 
@@ -65,8 +68,22 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case ADD_CARRITO:
             return {...state,carritoCompra:[...state.carritoCompra,payload]}
         case REMOVE_CARRITO:
-            return {...state,carritoCompra:state.carritoCompra.filter((ele)=>ele.id !== payload)}
-        
+            return {
+                ...state,
+                carritoCompra:state.carritoCompra.filter((ele)=>Number(ele.id) !== Number(payload))
+            }
+        case QUITAR_STOCK:
+            return {...state}
+        case COMPRA_EXITOSA:
+            return {
+                ...state,
+                carritoCompra:[]
+            }
+        case LIMPIAR_COMPRADOS:
+            return{
+                ...state,
+                comprados:[]
+            }
         default:
             return{...state}
     };

@@ -10,6 +10,7 @@ import { Carrito } from './components/Carrito/Carrito';
 import Detail from './components/Detail/Detail';
 import About from './components/About/About';
 import FormEdit from './components/FormEdit/FormEdit'
+import Success from './components/Success/Success';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/Detalle/:id' element={<Detail/>}/>
         <Route path='/About' element={<About/>}/>
         <Route path='/Editar/:id' element={<FormEdit/>}/>
+        <Route path='/success' element={<Success/>}/>
       </Routes>
     </div>
   )

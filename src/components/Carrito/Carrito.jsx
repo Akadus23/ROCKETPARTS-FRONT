@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import style from './Carrito.module.css'
 import axios from "axios"
 import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
-import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados } from "../../redux/actions"
+import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
 
 export function Carrito (){
     const elementos = useSelector(state=>state.carritoCompra)
@@ -34,6 +34,7 @@ export function Carrito (){
         }
     }
     useEffect(()=>{
+        dispatch(limpiarComprados())
         elementos.map(ele=>{
             dispatch(productosAComprar(ele.id))
         })
@@ -58,8 +59,12 @@ export function Carrito (){
                         dispatch(restarCarrito(ele.precioproducto))
                         dispatch(productosRetirados(ele.id))
                     }
+                    const quitar = (id)=>{
+                        elementos.filter(pro=>Number(pro.id) !== Number(id))
+                    }
                     return(
                         <div className={style.container} key={ele.id}>
+                            <button onClick={()=>quitar(ele.id)}>quitar carrito</button>
                             <h3>{ele.nombreproducto}</h3>
                             <img src={ele.fotoprinc} alt="" />
                             <h2>{ele.precioproducto}</h2>
@@ -77,7 +82,7 @@ export function Carrito (){
             <br />
             {elementos.length?<div>
                 <button onClick={handleBuy}>PAGAR</button>
-                {preferenceId && <Wallet initialization ={{ preferenceId }}/>}
+                {preferenceId && <div><Wallet initialization ={{ preferenceId }}/></div>}
             </div>:null}
             <br />
             <br />
