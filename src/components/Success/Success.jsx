@@ -17,7 +17,7 @@ export default function Success(params) {
         <div>
             GRACIAS POR SU COMPRA
             <br />
-            <Link to='/Tienda'><button>volver a tienda</button></Link>
+            <Link to='/Tienda'><button>Volver a comprar con nosostros!!</button></Link>
         </div>
     )
     
