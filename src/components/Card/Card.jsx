@@ -23,8 +23,7 @@ export default function Card({nombre, img, descuento, id, precio, calificacion,d
                         <h3>{nombre}</h3>
                         <img className={style.imagenes} src={img} alt="" />
                         <h3>{precio}$</h3>
-                        <h3> {calificacion} </h3>
-                        
+                        {dispo?<h3>Disponible</h3>:<h3>No disponible</h3>}
                         {dispo?<div>
                         {!carrito.find(elemento=>Number(id) === elemento.id)?
                         <button onClick={()=>añadir(all)}>Añadir a carrito</button>:

@@ -1,6 +1,7 @@
 import {useState,useEffect} from "react";
 import axios from "axios";
 import style from './SearchBar.module.css'
+import { URL } from "../../constantes";
 
 export default function SearchBar({onSearch}){
     const[ helpSearch, setHelpSearch ] = useState([])
@@ -15,7 +16,7 @@ export default function SearchBar({onSearch}){
     }
     useEffect(()=>{
         async function axiosData(){
-            const resApi = await axios(`http://localhost:3001/products`)
+            const resApi = await axios(`${URL}products`)
             if(resApi.data){
                 setHelpSearch(resApi.data.productos)
             }

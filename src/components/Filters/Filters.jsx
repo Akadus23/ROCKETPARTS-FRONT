@@ -1,7 +1,8 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
+import { URL } from "../../constantes"
 
-export default function Filters({handleSelect,limpiar,ver,disponibles,handleSelectMarcas,noDisponibles,ordenarAlf,ordenarNum}){
+export default function Filters({error,handleSelect,limpiar,ver,disponibles,handleSelectMarcas,noDisponibles,ordenarAlf,ordenarNum}){
     const[renCat, setRenCat] =useState([])
     const[renMarcas,setRenMarcas] = useState([])
 
@@ -14,7 +15,7 @@ export default function Filters({handleSelect,limpiar,ver,disponibles,handleSele
 
     useEffect(()=>{
         async function resAxios(){
-            const resApi = await axios('http://localhost:3001/products')
+            const resApi = await axios(`${URL}products`)
             if(resApi.data){
                 const categorias = []
                 const marcas = []
@@ -31,7 +32,7 @@ export default function Filters({handleSelect,limpiar,ver,disponibles,handleSele
     },[])
     return(
         <div>
-            {ver.length?<button onClick={()=>{limpiar();setManejoFilt(true);setNoverDispo(true)}}>Ver todo el catalogo</button>:null}
+            {ver.length || error.length?<button onClick={()=>{limpiar();setManejoFilt(true);setNoverDispo(true)}}>Ver todo el catalogo</button>:null}
             <select onChange={(event)=>{handleSelect(event,setManejoFilt);setNoverDispo(true)}}>
                 <option key='limpiar' name='limpiar' value="limpiar">Buscar por categoria</option>
                 {renCat?.map((ele)=>{

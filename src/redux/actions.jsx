@@ -1,4 +1,5 @@
 import axios from "axios"
+import {URL} from '../constantes'
 export const ADD_CARRITO = 'ADD_CARRITO'
 export const REMOVE_CARRITO = 'REMOVE_CARRITO'
 export const BUSCAR_PERSONAJE_ID = 'BUSCAR_PERSONAJE_ID'
@@ -15,7 +16,7 @@ export const LIMPIAR_COMPRADOS = 'LIMPIAR_COMPRADOS'
 export const buscarId = (id)=>{
     return async function(dispatch){
         try {
-        const resApi = await axios(`http://localhost:3001/products/${id}`)
+        const resApi = await axios(`${URL}products/${id}`)
          if(resApi.data){
          return dispatch({
                 type:BUSCAR_PERSONAJE_ID,
@@ -103,7 +104,7 @@ export const limpiarCarrito = ()=>{
     }
 }
 export const quitarStock = (id)=>{
-    const res = axios.put(`http://localhost:3001/restar/${id}`)
+    const res = axios.put(`${URL}restar/${id}`)
     res.data
     return{
         type:QUITAR_STOCK
