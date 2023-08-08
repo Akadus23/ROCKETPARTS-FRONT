@@ -71,50 +71,58 @@ export default function Home (){
         setVer([])
     }
     return(
-        <div>
-            <Link to='/Carrito'><button>ver carrito</button></Link>
-            <div>
+        <div class='w-full h-screen flex flex-col'>
+            <div class='w-full basis-1' >
                <SearchBar onSearch={onSearch}/> 
             </div>
-            <div>
-                <Filters limpiar={limpiar} handleSelect={handleSelect}/>
+            <div class='flex flex-row'>
+
+                <div class='basis-1/4'>
+                    <Filters limpiar={limpiar} handleSelect={handleSelect}/>
+                </div>
+                <div class='basis-1/2 flex flex-col'>
+
+                    {!ver.length&&!error&&<div class='items-center justify-center'>
+                        <Pagination 
+                            productsPerPage={productsPerPage}
+                            allProducts={allProducts.length}
+                            pagination={pagination}
+                        />
+                    </div>}
+                    <div class='flex-wrap mt-15'>
+                        <div>
+                            {error?<ErrorSearch error={error}/>:null}
+                        </div>
+                        <div>
+                            {ver?<Results ver={ver}/>:null
+                            }
+                        </div>
+                        {!ver.length&&!error&&<div class='flex flex-row w-full mt-10'>
+                        { currentProducts?.map((e, k) => {
+                                    if(e.nombreproducto){
+                                        return(
+                                            <div key={k}  >
+                                                <Card
+                                                all={e}
+                                                dispo={e.disponibproducto}
+                                                key={e.id}
+                                                id={e.id}
+                                                nombre={e.nombreproducto}
+                                                descuento={e.descproducto}
+                                                img={e.fotoprinc}
+                                                precio={e.precioproducto}
+                                                calificacion={e.calificacionproducto}
+                                                />
+                                            </div>
+                                        )
+                                    }
+                                }) }
+                        </div>}
+                    </div>
+                    
+                </div>
+                <div class='basis-1/4'></div>
             </div>
-            {!ver.length&&!error&&<div>
-                <Pagination 
-                    productsPerPage={productsPerPage}
-                    allProducts={allProducts.length}
-                    pagination={pagination}
-                />
-            </div>}
-            
-            <div>
-                {error?<ErrorSearch error={error}/>:null}
-            </div>
-            <div>
-                {ver?<Results ver={ver}/>:null
-                }
-            </div>
-            {!ver.length&&!error&&<div>
-            { currentProducts?.map((e, k) => {
-                        if(e.nombreproducto){
-                            return(
-                                <div key={k} >
-                                    <Card
-                                    all={e}
-                                    dispo={e.disponibproducto}
-                                    key={e.id}
-                                    id={e.id}
-                                    nombre={e.nombreproducto}
-                                    descuento={e.descproducto}
-                                    img={e.fotoprinc}
-                                    precio={e.precioproducto}
-                                    calificacion={e.calificacionproducto}
-                                    />
-                                </div>
-                            )
-                        }
-                    }) }
-            </div>}
             
             
         </div>

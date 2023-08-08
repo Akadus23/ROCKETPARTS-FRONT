@@ -17,8 +17,8 @@ export default function Filters({handleSelect,limpiar}){
         resAxios()
     },[])
     return(
-        <div>
-            <button onClick={limpiar}>ver paginado</button>
+        <div >
+            <button onClick={limpiar} class='text-zinc-100'>ver paginado</button>
             <select onChange={handleSelect}>
                 {renCat?.map((ele)=>{
                     return(

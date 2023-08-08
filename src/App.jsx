@@ -14,8 +14,8 @@ import About from './components/About/About';
 function App() {
   const {pathname} = useLocation()
   return (
-    <div>
-      {pathname!=='/'&&<Navbar/>}
+    <div class='bg-black'>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path="/Tienda" element={<Home/>}/>
