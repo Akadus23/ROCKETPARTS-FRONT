@@ -60,7 +60,7 @@ export function Carrito (){
         saveInLocalStorage(elementos);
     },[elementos])
     return(
-        <div>
+        <div class='text-zinc-100'>
             {elementos.length?
             <div>
                 {elementos.map((ele)=>{

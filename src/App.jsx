@@ -17,8 +17,8 @@ import './App.css'
 function App() {
   const {pathname} = useLocation()
   return (
-    <div className='mainContainer'>
-      {pathname!=='/'&&<Navbar/>}
+    <div class='bg-black'>
+      <Navbar/>
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path="/Tienda" element={<Home/>}/>
