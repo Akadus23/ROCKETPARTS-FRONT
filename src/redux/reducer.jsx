@@ -73,7 +73,9 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 carritoCompra:state.carritoCompra.filter((ele)=>Number(ele.id) !== Number(payload))
             }
         case QUITAR_STOCK:
-            return {...state}
+            return {
+                ...state
+            }
         case COMPRA_EXITOSA:
             return {
                 ...state,

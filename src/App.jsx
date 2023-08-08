@@ -11,12 +11,13 @@ import Detail from './components/Detail/Detail';
 import About from './components/About/About';
 import FormEdit from './components/FormEdit/FormEdit'
 import Success from './components/Success/Success';
+import './App.css'
 
 
 function App() {
   const {pathname} = useLocation()
   return (
-    <div>
+    <div className='mainContainer'>
       {pathname!=='/'&&<Navbar/>}
       <Routes>
         <Route path='/' element={<Landing/>}/>

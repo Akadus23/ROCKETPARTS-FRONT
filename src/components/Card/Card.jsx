@@ -16,9 +16,7 @@ export default function Card({nombre, img, descuento, id, precio, calificacion,d
         return dispatch(removeCarrito(id))
     }
     return(
-        <div >
-            
-                <div>
+        <div className={style.allcontainer} >
                 <div className={style.container} key={id}>
                         <h3>{nombre}</h3>
                         <img className={style.imagenes} src={img} alt="" />
@@ -26,15 +24,11 @@ export default function Card({nombre, img, descuento, id, precio, calificacion,d
                         {dispo?<h3>Disponible</h3>:<h3>No disponible</h3>}
                         {dispo?<div>
                         {!carrito.find(elemento=>Number(id) === elemento.id)?
-                        <button onClick={()=>añadir(all)}>Añadir a carrito</button>:
-                        <button onClick={()=>quitar(Number(id))}>Quitar de carrito</button>}
+                        <button className={style.botones} onClick={()=>añadir(all)}>Añadir a carrito</button>:
+                        <button className={style.botonQuitar} onClick={()=>quitar(Number(id))}>Quitar de carrito</button>}
                     </div>:null}
-                        <Link   to={`/Detalle/${id}`}><button>ver más</button></Link>   
+                        <Link   to={`/Detalle/${id}`}><button className={style.botones}>ver más</button></Link>   
                     </div>
-                    
-                    
-                </div>
-            
         </div>
     )
 }
