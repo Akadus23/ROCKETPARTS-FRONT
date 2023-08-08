@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
 import { URL } from "../../constantes"
+import style  from './Filters.module.css'
 
 export default function Filters({error,handleSelect,limpiar,ver,disponibles,handleSelectMarcas,noDisponibles,ordenarAlf,ordenarNum}){
     const[renCat, setRenCat] =useState([])
@@ -23,15 +24,14 @@ export default function Filters({error,handleSelect,limpiar,ver,disponibles,hand
                     categorias.push(ele.categoria.toUpperCase())
                     marcas.push(ele.marca.toUpperCase())
                 })
-                setRenCat([... new Set(categorias)])
-                setRenMarcas([... new Set(marcas)])
+                setRenCat([... new Set(categorias?.sort())])
+                setRenMarcas([... new Set(marcas?.sort())])
             }
-            
         }
         resAxios()
     },[])
     return(
-        <div>
+        <div className={style.container}>
             {ver.length || error.length?<button onClick={()=>{limpiar();setManejoFilt(true);setNoverDispo(true)}}>Ver todo el catalogo</button>:null}
             <select onChange={(event)=>{handleSelect(event,setManejoFilt);setNoverDispo(true)}}>
                 <option key='limpiar' name='limpiar' value="limpiar">Buscar por categoria</option>
@@ -51,7 +51,6 @@ export default function Filters({error,handleSelect,limpiar,ver,disponibles,hand
             </select>
             {noVerDispo&&<button onClick={disponibles}>disponibles</button>}
             <button onClick={()=>{noDisponibles();setNoverDispo(false)}}>Buscar todos los productos agotados</button>
-            <br />
             <h3>Ordenar busqueda</h3>
             <br />
             <button value='Ordenar de la A-Z' onClick={(event)=>{ordenarAlf(ver,char=>char.nombreproducto,ordenAlf);setOrdenAlf(!ordenAlf)}}>Ordenar por alfabeto {ordenAlf?'🡻':'🡹'}</button>
