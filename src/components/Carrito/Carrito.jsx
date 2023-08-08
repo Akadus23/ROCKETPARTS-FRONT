@@ -69,7 +69,9 @@ export function Carrito (){
                             <h3>{ele.nombreproducto}</h3>
                             <img src={ele.fotoprinc} alt="" />
                             <h2>{ele.precioproducto}</h2>
-                            {!preferenceId?<button onClick={res}>-</button>:null}{cont}{!preferenceId?<button onClick={sum}>+</button>:null}
+                            <div className={style.contAum}>
+                                {!preferenceId?<button onClick={res}>-</button>:null}{cont}{!preferenceId?<button onClick={sum}>+</button>:null}
+                            </div>
                         </div>
                     )
                 })}

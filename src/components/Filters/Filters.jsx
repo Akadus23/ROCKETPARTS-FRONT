@@ -31,17 +31,17 @@ export default function Filters({error,handleSelect,limpiar,ver,disponibles,hand
         resAxios()
     },[])
     return(
-        <div className={style.container}>
-            {ver.length || error.length?<button onClick={()=>{limpiar();setManejoFilt(true);setNoverDispo(true)}}>Ver todo el catalogo</button>:null}
-            <select onChange={(event)=>{handleSelect(event,setManejoFilt);setNoverDispo(true)}}>
+        <div>
+            <div  className={style.container1}>
+                <select className={style.filtros} onChange={(event)=>{handleSelect(event,setManejoFilt);setNoverDispo(true)}}>
                 <option key='limpiar' name='limpiar' value="limpiar">Buscar por categoria</option>
                 {renCat?.map((ele)=>{
                     return(
-                        <option key={ele} name={ele}>{ele}</option>
+                        <option className={style.optionCate} key={ele} name={ele}>{ele}</option>
                     )
                 })}
             </select>
-            <select onChange={(event)=>{handleSelectMarcas(event,manejoFilt,setManejoFilt);setNoverDispo(true)}}>
+            <select className={style.filtros} onChange={(event)=>{handleSelectMarcas(event,manejoFilt,setManejoFilt);setNoverDispo(true)}}>
                 <option key='limpiar' name='limpiar' value='limpiar'>Buscar por marca</option>
                 {renMarcas?.map((ele)=>{
                     return(
@@ -49,12 +49,16 @@ export default function Filters({error,handleSelect,limpiar,ver,disponibles,hand
                     )
                 })}
             </select>
-            {noVerDispo&&<button onClick={disponibles}>disponibles</button>}
-            <button onClick={()=>{noDisponibles();setNoverDispo(false)}}>Buscar todos los productos agotados</button>
-            <h3>Ordenar busqueda</h3>
-            <br />
-            <button value='Ordenar de la A-Z' onClick={(event)=>{ordenarAlf(ver,char=>char.nombreproducto,ordenAlf);setOrdenAlf(!ordenAlf)}}>Ordenar por alfabeto {ordenAlf?'🡻':'🡹'}</button>
-            <button onClick={()=>{ordenarNum(ver,char=>Number(char.precioproducto),orden);setOrden(!orden)}}>Ordenar por valor {orden?'🡹':'🡻'}</button>
+            {noVerDispo&&<button className={style.filtros} onClick={disponibles}>disponibles</button>}
+            <button className={style.filtros} onClick={()=>{noDisponibles();setNoverDispo(false)}}>Buscar todos los productos agotados</button>  
+            </div>
+            <div className={style.text}>
+                {ver.length || error.length?<button className={style.filtros} onClick={()=>{limpiar();setManejoFilt(true);setNoverDispo(true)}}>Ver todo el catalogo</button>:null}
+            </div>
+            {ver.length?<div className={style.container2}>
+                <button className={style.filtros} value='Ordenar de la A-Z' onClick={(event)=>{ordenarAlf(ver,char=>char.nombreproducto,ordenAlf);setOrdenAlf(!ordenAlf)}}>Ordenar por alfabeto {ordenAlf?'🡻':'🡹'}</button>
+                <button className={style.filtros} onClick={()=>{ordenarNum(ver,char=>Number(char.precioproducto),orden);setOrden(!orden)}}>Ordenar por valor {orden?'🡹':'🡻'}</button>  
+            </div>:null}
         </div>
     )
 }

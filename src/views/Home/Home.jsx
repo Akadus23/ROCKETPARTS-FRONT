@@ -10,6 +10,7 @@ import { getProductos } from '../../redux/actions';
 import Pagination from '../../components/Pagination/Pagination';
 import Card from '../../components/Card/Card';
 import { URL } from '../../constantes';
+import style from './Home.module.css'
 
 export default function Home (){
 
@@ -167,7 +168,7 @@ export default function Home (){
     }
     return(
         <div>
-            <Link to='/Carrito'><button>ver carrito</button></Link>
+            <Link to='/Carrito'><button className={style.botones}>🛒</button></Link>
             <div>
                <SearchBar onSearch={onSearch}/> 
             </div>
