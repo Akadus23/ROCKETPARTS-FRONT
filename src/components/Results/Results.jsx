@@ -16,7 +16,7 @@ export default function Results ({ver}){
     }
 
     return(
-        <div>
+        <div className={style.allcontainer}>
             {ver?.map(ele=>{
                 return(
                     <div className={style.container} key={ele.id}>
@@ -26,10 +26,10 @@ export default function Results ({ver}){
                         {ele.disponibproducto?<h3>Disponible</h3>:<h3>No disponible</h3>}
                         {ele.disponibproducto?<div>
                            {!ayuCarrito.find(elemento=>ele.id === elemento.id)?
-                            <button onClick={()=>añadir(ele)}>Añadir a carrito</button>:
-                            <button onClick={()=>quitar(ele.id)}>Quitar de carrito</button>} 
+                            <button className={style.botones} onClick={()=>añadir(ele)}>Añadir a carrito</button>:
+                            <button className={style.botonQuitar} onClick={()=>quitar(ele.id)}>Quitar de carrito</button>} 
                         </div>:null}
-                        <Link to={`/Detalle/${ele.id}`}><button>ver más</button></Link>
+                        <Link to={`/Detalle/${ele.id}`}><button className={style.botones}>ver más</button></Link>
                     </div>
                 )
             })}
