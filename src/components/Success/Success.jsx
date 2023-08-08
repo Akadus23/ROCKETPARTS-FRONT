@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useSelector,useDispatch } from "react-redux";
 import { quitarStock,limpiarComprados,limpiarCarrito } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import { URL } from "../../constantes";
 
 export default function Success(params) {
     const dispatch = useDispatch()
@@ -12,6 +14,11 @@ export default function Success(params) {
         })
         dispatch(limpiarComprados())
         dispatch(limpiarCarrito())
+        const ayu = async()=>{
+            const res = await axios(`${URL}success`)
+            return res.data
+        }
+        ayu()
     },[dispatch])
     return(
         <div>

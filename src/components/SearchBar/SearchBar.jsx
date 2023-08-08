@@ -46,10 +46,10 @@ export default function SearchBar({onSearch}){
         return setRenderHelp(ayu)
     }
     return(
-        <div>
+        <div className={style.allcotainer}>
             <div className={style.inputSearch}>
+            <button className={style.onSearch} onClick={()=>{onSearch(bar);setBar('');setNoVer(false)}} type="search">🔍</button>
                 <input className={style.barra} type="text" value={bar} onChange={handleChange}/>
-                <button className={style.onSearch} onClick={()=>{onSearch(bar);setBar('');setNoVer(false)}} type="search">BUSCAR</button>
             </div>
             
             {renderHelp?.map((ele)=>{
