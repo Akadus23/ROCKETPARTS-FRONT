@@ -7,13 +7,22 @@ import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
 import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
 import { URL } from "../../constantes"
 
+const saveInLocalStorage = (carrito) => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
 export function Carrito (){
     const elementos = useSelector(state=>state.carritoCompra)
     const total = useSelector(state=>state.total)
     const porComprar = useSelector(state=>state.comprados)
     const [preferenceId, setPreferenceId] = useState(null)
+
+    //Estado Local para almacenar carrito desde localStorage
+    const [carritoLocal, setCarritoLocal] = useState([]);
+    
     initMercadoPago('TEST-c400579c-6b28-4f81-b113-f46d83d791dd');
     const dispatch = useDispatch()
+
     const createPreference = async()=>{
         try {
             const response = await axios.post(`${URL}create-order`,{
@@ -35,11 +44,20 @@ export function Carrito (){
         }
     }
     useEffect(()=>{
+        //Leer carrito del localstorage al montarse
+        const carritoGuardado = localStorage.getItem("carrito");
+        if(carritoGuardado) {
+            setCarritoLocal(JSON.parse(carritoGuardado));
+        }
+
         dispatch(limpiarComprados())
         elementos.map(ele=>{
             dispatch(productosAComprar(ele.id))
         })
         dispatch(precioInicial(elementos))
+
+        //Guardar carrito actualizado en localStorage
+        saveInLocalStorage(elementos);
     },[elementos])
     return(
         <div>
