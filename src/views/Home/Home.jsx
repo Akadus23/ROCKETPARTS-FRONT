@@ -167,10 +167,10 @@ export default function Home (){
         }
     }
     return(
-        <div>
+        <div class='w-full h-full flex flex-col bg-black'>
             //class='w-full h-screen flex flex-col'
-            <Link to='/Carrito'><button className={style.botones}>🛒</button></Link>
-            <div class='w-full basis-1'>
+            <div class='w-full basis-1 justify-center'>
+                
                <SearchBar onSearch={onSearch}/> 
             </div>
             <div>
@@ -183,84 +183,37 @@ export default function Home (){
                     pagination={pagination}
                 />
             </div>}
-            <div>
-                {error?<ErrorSearch error={error}/>:null}
-            </div>
-            <div>
-                {ver?<Results ver={ver}/>:null
-                }
-            </div>
-            {!ver.length&&!error&&<div>
-            { currentProducts?.map((e, k) => {
-                        if(e.nombreproducto){
-                            return(
-                                <div key={k} >
-                                    <Card
-                                    all={e}
-                                    dispo={e.disponibproducto}
-                                    key={e.id}
-                                    id={e.id}
-                                    nombre={e.nombreproducto}
-                                    descuento={e.descproducto}
-                                    img={e.fotoprinc}
-                                    precio={e.precioproducto}
-                                    calificacion={e.calificacionproducto}
-                                    />
-                                </div>
-                            )
-                        }
-                    }) }
-            </div>}
-            {/* <div class='flex flex-row'>
+            <div class='flex flex-wrap flex-row mt-15 w-full bg-black'>
 
-                <div class='basis-1/4'>
-                    <Filters limpiar={limpiar} handleSelect={handleSelect}/>
+                <div class=' text-zinc-100'>
+                    {error?<ErrorSearch error={error}/>:null}
                 </div>
-                <div class='basis-1/2 flex flex-col'>
-
-                    {!ver.length&&!error&&<div class='items-center justify-center'>
-                        <Pagination 
-                            productsPerPage={productsPerPage}
-                            allProducts={allProducts.length}
-                            pagination={pagination}
-                        />
-                    </div>}
-                    <div class='flex-wrap mt-15'>
-                        <div>
-                            {error?<ErrorSearch error={error}/>:null}
-                        </div>
-                        <div>
-                            {ver?<Results ver={ver}/>:null
+                <div class='flex flex-row flex-wrap gap-5 mx-14'>
+                    {ver?<Results ver={ver}/>:null
+                    }
+                </div>
+                {!ver.length&&!error&&<div class='flex flex-row flex-wrap gap-10 mx-24 mb-10'>
+                { currentProducts?.map((e, k) => {
+                            if(e.nombreproducto){
+                                return(
+                                    <div key={k} class='mt-14' >
+                                        <Card
+                                        all={e}
+                                        dispo={e.disponibproducto}
+                                        key={e.id}
+                                        id={e.id}
+                                        nombre={e.nombreproducto}
+                                        descuento={e.descproducto}
+                                        img={e.fotoprinc}
+                                        precio={e.precioproducto}
+                                        calificacion={e.calificacionproducto}
+                                        />
+                                    </div>
+                                )
                             }
-                        </div>
-                        {!ver.length&&!error&&<div class='flex flex-row w-full mt-10'>
-                        { currentProducts?.map((e, k) => {
-                                    if(e.nombreproducto){
-                                        return(
-                                            <div key={k}  >
-                                                <Card
-                                                all={e}
-                                                dispo={e.disponibproducto}
-                                                key={e.id}
-                                                id={e.id}
-                                                nombre={e.nombreproducto}
-                                                descuento={e.descproducto}
-                                                img={e.fotoprinc}
-                                                precio={e.precioproducto}
-                                                calificacion={e.calificacionproducto}
-                                                />
-                                            </div>
-                                        )
-                                    }
-                                }) }
-                        </div>}
-                    </div>
-                    
-                </div>
-                <div class='basis-1/4'></div>
-            </div> */}
-            
-            
+                        }) }
+                </div>}
+            </div>
         </div>
     )
 }

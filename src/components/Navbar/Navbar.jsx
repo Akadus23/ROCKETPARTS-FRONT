@@ -23,6 +23,7 @@ export default function Navbar (){
               </div>
               <div class="flex items-center gap-8 mr-5 mt-3">
                 <div  class="items-center font-semibold text-xl flex gap-6" >
+                  <Link to='/Carrito'><button class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" >🛒</button></Link>
                   <a class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all"  href="/Tienda" >Tienda</a>
                   <a class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" href="/CrearProducto" >Crear Producto</a>
                 </div>

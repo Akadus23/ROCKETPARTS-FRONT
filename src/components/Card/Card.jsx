@@ -41,7 +41,7 @@ export default function Card({nombre, img, descuento, id, precio, calificacion,d
         //         </div>
             
         // </div>
-        <div class="relative flex w-96 h-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+        <div class="relative flex w-96 h-96 flex-col rounded-xl bg-[#6b35e8] bg-clip-border text-[#fafafa] shadow-md">
             <div class="relative mx-4 -mt-8 h-80 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600 bg-cover bg-center" style={backgroundImageStyle}>
                 
             </div>
@@ -54,13 +54,15 @@ export default function Card({nombre, img, descuento, id, precio, calificacion,d
                 </p>
             </div>
             <div class="p-6 pt-0 flex flex-row">
-                <button data-ripple-light="true" type="button" class="select-none rounded-lg bg-violet-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                <Link to={`/Detalle/${id}`}>
+                <button data-ripple-light="true" type="button" class="select-none rounded-lg bg-[#fafafa] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-[#050505] shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                 Ver más
                 </button>
+                </Link>
                 {dispo?<div class='ml-10'>
                          {!carrito.find(elemento=>Number(id) === elemento.id)?
-                         <button onClick={()=>añadir(all)} class="select-none rounded-lg bg-violet-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Añadir a carrito</button>:
-                         <button onClick={()=>quitar(Number(id))} class="select-none rounded-lg bg-violet-600 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Quitar de carrito</button>}
+                         <button onClick={()=>añadir(all)} class="select-none rounded-lg bg-[#fafafa] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-[#050505] shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Añadir a carrito</button>:
+                         <button onClick={()=>quitar(Number(id))} class="select-none rounded-lg bg-[#fafafa] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-[#050505] shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">Quitar de carrito</button>}
                      </div>:null}
             </div>
         </div>

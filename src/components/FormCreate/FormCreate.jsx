@@ -95,7 +95,7 @@ export default function FormCreate() {
   const [errorCategoria,setErrorCategoria] = useState('A que tipo de mercado pertenece tu producto')
   const [errorMarca,setErrorMarca] = useState('A que marca pertenece tu producto?')
     return(
-        <div className={style.container}>
+        <div class='text-zinc-100'>
             <form action="" onSubmit={(event)=>submit(event)}>
                 <div>
                   <span>Nombre del producto</span>
