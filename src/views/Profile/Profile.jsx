@@ -28,6 +28,10 @@ export default function Profile() {
     // }, [])
 
     return (
-        <h1>Este es el perfil</h1>
+        <div class='text-zinc-100'>
+        {/* <img src={user.picture} alt='' ></img> */}
+        <h1>{user.name} </h1>
+        <h2>{user.nickname} </h2>
+        </div>
     )
 }
