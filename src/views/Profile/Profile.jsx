@@ -5,8 +5,9 @@ import axios from 'axios';
 import { usuarioID } from "../../redux/actions";
 
 export default function Profile() {
+    const { user } = useAuth0();
+    const userId = user.sub;
     const dispatch = useDispatch()
-    const { isAuthenticated, user } = useAuth0();
 
     const [userInfo, setUserInfo] = useState([]);
 

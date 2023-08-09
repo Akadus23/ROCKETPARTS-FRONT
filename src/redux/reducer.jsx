@@ -65,13 +65,30 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case BUSCAR_PERSONAJE_ID:
             return{...state,detail:payload}
-        case ADD_CARRITO:
-            return {...state,carritoCompra:[...state.carritoCompra,payload]}
+            case ADD_CARRITO:
+                const usuarioId = payload.usuarioId;
+                const nuevoCarrito = [...(state.carritoCompra[usuarioId] || []), payload];
+                return {
+                    ...state,
+                    carritoCompra: {
+                        ...state.carritoCompra,
+                        [usuarioId]: nuevoCarrito
+                    }
+                };
+            // return {...state,carritoCompra:[...state.carritoCompra,payload]}
         case REMOVE_CARRITO:
+            const carritoActualizado = (state.carritoCompra[payload.usuarioId] || []).filter(ele => ele.id !== payload.productId);
             return {
                 ...state,
-                carritoCompra:state.carritoCompra.filter((ele)=>Number(ele.id) !== Number(payload))
+                carritoCompra: {
+                    ...state.carritoCompra,
+                    [payload.usuarioId]: carritoActualizado
+                }
             }
+            // return {
+            //     ...state,
+            //     carritoCompra:state.carritoCompra.filter((ele)=>Number(ele.id) !== Number(payload))
+            // }
         case QUITAR_STOCK:
             return {
                 ...state
@@ -89,6 +106,4 @@ export default function rootReducer(state = initialState, { type, payload }) {
         default:
             return{...state}
     };
-
-        
 }

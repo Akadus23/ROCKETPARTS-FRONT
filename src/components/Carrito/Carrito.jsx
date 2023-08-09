@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import style from './Carrito.module.css'
 import axios from "axios"
 import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
-import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
+import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito, addCarrito } from "../../redux/actions"
 import { URL } from "../../constantes"
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,9 +13,8 @@ const saveInLocalStorage = (carrito) => {
 }
 
 export function Carrito (){
-
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
-
+    const { isAuthenticated, loginWithRedirect, user } = useAuth0();
+    const dispatch = useDispatch()
     const elementos = useSelector(state=>state.carritoCompra)
     const total = useSelector(state=>state.total)
     const porComprar = useSelector(state=>state.comprados)
@@ -25,7 +24,6 @@ export function Carrito (){
     const [carritoLocal, setCarritoLocal] = useState([]);
     
     initMercadoPago('TEST-c400579c-6b28-4f81-b113-f46d83d791dd');
-    const dispatch = useDispatch()
 
     const createPreference = async()=>{
         try {
@@ -59,6 +57,8 @@ export function Carrito (){
             setCarritoLocal(JSON.parse(carritoGuardado));
         }
 
+        const usuarioId = isAuthenticated ? user?.sub : null;
+
         dispatch(limpiarComprados())
         elementos.map(ele=>{
             dispatch(productosAComprar(ele.id))
@@ -67,7 +67,7 @@ export function Carrito (){
 
         //Guardar carrito actualizado en localStorage
         saveInLocalStorage(elementos);
-    },[elementos])
+    },[elementos, isAuthenticated, user])
     return(
         <div class='text-zinc-100' className={style.allContainer}>
             {elementos.length?
@@ -88,7 +88,6 @@ export function Carrito (){
                         dispatch(productosRetirados(ele.id))
                     }
                     const quitar = (id)=>{
-                        window.location.reload(true);
                         dispatch(removeCarrito(Number(id)))
                     }
                     return(
@@ -101,7 +100,7 @@ export function Carrito (){
                             <div className={style.contAum}>
                                 {!preferenceId?<button className={style.botonesAyD} onClick={res}>-</button>:null}{cont}{!preferenceId?<button className={style.botonesAyD} onClick={sum}>+</button>:null}
                             </div>  
-                            <button className={style.butonInterno} onClick={()=>quitar(ele.id)}>quitar carrito</button>
+                            <button className={style.butonInterno} onClick={()=>quitar(user?.sub, ele.id)}>quitar carrito</button>
                             </div>
 
                         </div>
