@@ -6,12 +6,16 @@ import axios from "axios"
 import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
 import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
 import { URL } from "../../constantes"
+import { useAuth0 } from "@auth0/auth0-react";
 
 const saveInLocalStorage = (carrito) => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 export function Carrito (){
+
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
+
     const elementos = useSelector(state=>state.carritoCompra)
     const total = useSelector(state=>state.total)
     const porComprar = useSelector(state=>state.comprados)
@@ -38,10 +42,15 @@ export function Carrito (){
         }
     }
     const handleBuy = async()=>{
-        const id = await createPreference();
+        if(isAuthenticated){
+            const id = await createPreference();
         if(id){
             setPreferenceId(id)
         }
+        } else {
+            loginWithRedirect()
+        }
+        
     }
     useEffect(()=>{
         //Leer carrito del localstorage al montarse
@@ -79,7 +88,8 @@ export function Carrito (){
                         dispatch(productosRetirados(ele.id))
                     }
                     const quitar = (id)=>{
-                        elementos.filter(pro=>Number(pro.id) !== Number(id))
+                        window.location.reload(true);
+                        dispatch(removeCarrito(Number(id)))
                     }
                     return(
                         <div className={style.container} key={ele.id}>
