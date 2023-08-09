@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import { buscarId, addCarrito,removeCarrito} from "../../redux/actions";
 import {Link} from 'react-router-dom'
 import style from './Detail.module.css'
+import { useAuth0 } from "@auth0/auth0-react";
 export default function Detail() {
+
+    const { isAuthenticated } = useAuth0();
+
     const {id} = useParams();
     const dispatch = useDispatch();
     const detail = useSelector(state=>state.detail)
@@ -34,7 +38,8 @@ export default function Detail() {
                         <button className={style.botones} onClick={()=>añadir(detail)}>Añadir a carrito</button>:
                         <button className={style.botonQuitar} onClick={()=>quitar(Number(detail.id))}>Quitar de carrito</button>}
                     </div>:null}
-                    <Link to={`/Editar/${detail.id}`} ><button className={style.botones}>Editar</button></Link>
+                    { isAuthenticated ? <Link to={`/Editar/${detail.id}`} ><button className={style.botones}>Editar</button></Link> : null }
+                    
                     <Link to='/Tienda'><button className={style.botones}>Volver a Tienda</button></Link>
                 </div>
             :null}
