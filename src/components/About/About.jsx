@@ -11,7 +11,7 @@ export default function About() {
             <br />
             <br />
             <div className={style.containerInfo}>
-                <h2 className={style.nombres}>Marcos</h2>
+                <h2 className={style.nombres}>Marcos Cornejo</h2>
                 <br />
                 <Marcos/>
                 <br />
@@ -23,7 +23,7 @@ export default function About() {
                 <br />
             </div>
             <div className={style.containerInfo}>
-                <h2 className={style.nombres}>Fauter</h2>
+                <h2 className={style.nombres}>Fausto Lalia Monteros</h2>
                 <br />
                 <Fauter/>
                 <br />                
@@ -33,6 +33,11 @@ export default function About() {
                 <br />
                 <Carlos />
                 <br />
+            </div>
+            <div className={style.contText}>
+                <p>"La energía y la persistencia conquistan todas las cosas"</p>
+                <br />
+                <p>-Benjamin Franklin-</p>
             </div>
         </div>
     )

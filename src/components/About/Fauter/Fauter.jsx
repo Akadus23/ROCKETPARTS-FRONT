@@ -7,7 +7,7 @@ export default function Fauter(params) {
       <div>
         <ul className={style.contList}> 
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://github.com/Fauter" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
@@ -16,7 +16,7 @@ export default function Fauter(params) {
             </a> 
           </li>
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://www.linkedin.com/in/fausto-lalia-monteros-62692a226/" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
@@ -25,7 +25,7 @@ export default function Fauter(params) {
             </a> 
           </li>
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://www.instagram.com/fauslm_/" target='_blank'>
               <span></span>
               <span></span>
               <span></span>

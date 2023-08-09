@@ -7,7 +7,7 @@ export default function Marcos(params) {
       <div>
         <ul className={style.contList}> 
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://github.com/MEC-97" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
@@ -16,7 +16,7 @@ export default function Marcos(params) {
             </a> 
           </li>
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://www.linkedin.com/in/marcos-cornejo-81718b16a" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
@@ -25,7 +25,7 @@ export default function Marcos(params) {
             </a> 
           </li>
           <li>
-            <a href="#" target='_blank'>
+            <a href="https://instagram.com/marcos_cornejo21?utm_source=qr&igshid=MzNlNGNkZWQ4Mg%3D%3D" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
