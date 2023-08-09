@@ -185,7 +185,7 @@ export default function Home (){
             </div>}
             <div class='flex flex-wrap flex-row mt-15 w-full bg-black'>
 
-                <div class=' text-zinc-100'>
+                <div class=' text-zinc-100' className={style.contError}>
                     {error?<ErrorSearch error={error}/>:null}
                 </div>
                 <div class='flex flex-row flex-wrap gap-5 mx-14'>

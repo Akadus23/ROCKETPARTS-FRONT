@@ -107,7 +107,7 @@ export function Carrito (){
                         </div>
                     )
                 })}
-            </div>:<h1>Aun no agregas nada a tu carrito</h1>}
+            </div>:<h1 className={style.carritoVacio}>Aun no agregas nada a tu carrito</h1>}
             <br />
             <br />
             {elementos.length?<div className={style.total}>
