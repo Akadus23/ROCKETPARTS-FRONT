@@ -45,7 +45,9 @@ export default function Detail() {
                             <button className={style.botones} onClick={()=>añadir(detail)}>Añadir a carrito</button>:
                             <button className={style.botones} onClick={()=>quitar(Number(detail.id))}>Quitar de carrito</button>}
                             </div>:null}
+                            { isAuthenticated ? 
                             <Link to={`/Editar/${detail.id}`} ><button className={style.botones}>Editar</button></Link>
+                            : null}
                         </div>
                         <br />
                     </div>
