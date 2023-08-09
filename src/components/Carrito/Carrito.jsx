@@ -60,9 +60,9 @@ export function Carrito (){
         saveInLocalStorage(elementos);
     },[elementos])
     return(
-        <div class='text-zinc-100'>
+        <div class='text-zinc-100' className={style.allContainer}>
             {elementos.length?
-            <div>
+            <div className={style.container}>
                 {elementos.map((ele)=>{
                     const [cont,setCont] = useState(1)
                     
@@ -83,32 +83,34 @@ export function Carrito (){
                         dispatch(removeCarrito(Number(id)))
                     }
                     return(
-                        <div className={style.container} key={ele.id}>
-                            <button onClick={()=>quitar(ele.id)}>quitar carrito</button>
-                            <h3>{ele.nombreproducto}</h3>
-                            <img src={ele.fotoprinc} alt="" />
-                            <h2>{ele.precioproducto}</h2>
+                        <div className={style.card} key={ele.id}>
+                            <img className={style.imagen} src={ele.fotoprinc} alt="" />
+                            <div className={style.cuerpo}>
+                            <h3 >{ele.nombreproducto}</h3>
+                            <br />
+                            <h2 className={style.tag}>{ele.precioproducto}</h2>
                             <div className={style.contAum}>
-                                {!preferenceId?<button onClick={res}>-</button>:null}{cont}{!preferenceId?<button onClick={sum}>+</button>:null}
+                                {!preferenceId?<button className={style.botonesAyD} onClick={res}>-</button>:null}{cont}{!preferenceId?<button className={style.botonesAyD} onClick={sum}>+</button>:null}
+                            </div>  
+                            <button className={style.butonInterno} onClick={()=>quitar(ele.id)}>quitar carrito</button>
                             </div>
+
                         </div>
                     )
                 })}
             </div>:<h1>Aun no agregas nada a tu carrito</h1>}
             <br />
             <br />
-            {elementos.length?<div>
-                Total:{total}
+            {elementos.length?<div className={style.total}>
+                Total:   {total}
             </div>:null}
             <br />
             <br />
-            {elementos.length?<div>
-                <button onClick={handleBuy}>PAGAR</button>
-                {preferenceId && <div><Wallet initialization ={{ preferenceId }}/></div>}
+            {elementos.length?<div className={style.contPago}>
+                {preferenceId?<div><Wallet initialization ={{ preferenceId }}/></div>:<button className={style.butonInterno} onClick={handleBuy}>PAGAR</button>}
             </div>:null}
             <br />
             <br />
-            <Link to='/Tienda'><button>Volver</button></Link>
         </div>
     )
 }
