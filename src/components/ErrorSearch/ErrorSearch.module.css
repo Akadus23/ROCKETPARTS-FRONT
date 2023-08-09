@@ -1,12 +1,13 @@
 .container{
     background-color: rgb(224, 60, 60);
     display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items:start;
+    justify-content: center;
+    align-items:center;
     border: 1px solid black;
     margin-top: 1%;
-    margin-right: 15%;
-    padding: 5% 0 5% 10px;
-    color: antiquewhite;
+    color: white;
+    width: 90%;
+    height: 20rem;
+    font-size: 2rem;
+    padding: 14rem 0;
 }
