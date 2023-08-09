@@ -7,7 +7,7 @@ export default function Davinson(params) {
       <div>
         <ul className={style.contList}> 
           <li>
-            <a href="https://instagram.com/echelegafas?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D" target='_blank'>
+            <a href="https://github.com/Akadus23" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
@@ -25,7 +25,7 @@ export default function Davinson(params) {
             </a> 
           </li>
           <li>
-            <a href="https://github.com/Akadus23" target='_blank'>
+            <a href="https://instagram.com/echelegafas?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D" target='_blank'>
               <span></span>
               <span></span>
               <span></span>
