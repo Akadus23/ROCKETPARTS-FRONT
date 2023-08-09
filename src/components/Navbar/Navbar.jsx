@@ -3,12 +3,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {Link} from 'react-router-dom'
 
 export default function Navbar (){
-
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
-
   
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  console.log(isAuthenticated)
+
+  const handleLogout = () => {
+    logout({ returnTo: window.location.origin });
+};
+
+const handleLogin = () => {
+    loginWithRedirect();
+};
 
     return (
+
         <div class="mb-10 h-10">
           <header class="w-full h-16 bg-black fixed">
             <div class="flex items-center justify-between">
@@ -28,12 +36,16 @@ export default function Navbar (){
                   <a class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" href="/CrearProducto" >Crear Producto</a>
                 </div>
                 <div class="items-center font-semibold text-xl flex gap-6 text-zinc-100">
-                  { isAuthenticated ? 
+                  { isAuthenticated ? (
                   <>
                   <Link class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" to='/Perfil'>Perfil</Link>
-                  <button class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Cerrar Sesión</button> </>:
-                  <button class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" onClick={() => loginWithRedirect()}>Iniciar Sesión</button>
-                  }
+                  <button class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" onClick={handleLogout}>Cerrar Sesión</button>
+                  </>
+                  ) : (
+                  <>
+                    <button class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" onClick={handleLogin}>Iniciar Sesión</button>
+                  </>
+                  )}
                 <Link class="relative text-zinc-100 hover:after:bg-zinc-100 hover:after:w-full hover:after:h-[0.7px] hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:content:'' transition-all" to='/About'>About</Link>
                 </div>
               </div>
