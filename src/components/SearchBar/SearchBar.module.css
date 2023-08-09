@@ -9,12 +9,15 @@
 .clickSearch{
     justify-content: start;
     cursor: pointer;
+    align-items: center;
+    color: white;
 }
 .clickNoSearch{
     position: absolute;
     top: 0;
     right: 0;
     cursor: pointer;
+    color: white;
 }
 .allcotainer{
     margin: 0 5% 0 5%;

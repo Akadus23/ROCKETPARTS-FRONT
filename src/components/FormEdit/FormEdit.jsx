@@ -101,56 +101,59 @@ export default function FormCreate(params) {
     },[dispatch])
     return(
         <div>
-            <form onSubmit={onSubmit}>
-                <h1>Editar producto</h1>
-                <h3>Nota: recuerda que los campos que no edites permaneceran igual</h3>
-                <span>Nombre</span>
-                <br />
-                <input type="text" id='nombreproducto' placeholder={detalle.nombreproducto} value={editProd.nombreproducto} onChange={handleInput}/>
-                <br />
-                <span>{errorNombre || '✔'}</span>
-                <br />
-                <span>Precio</span>
-                <br />
-                <input type="number" id='precioproducto' placeholder={detalle.precioproducto} value={editProd.precioproducto} onChange={handleInput}/>
-                <br />
-                <span>{errorPrecio|| '✔'}</span>
-                <br />
-                <span>Categoria</span>
-                <br />
-                <input type="text" placeholder={detalle.categoria} id='categoria' value={editProd.categoria}  onChange={handleInput}/>
-                <br />
-                <span>{errorCategoria || '✔'}</span>
-                <br />
-                <span>Marca</span>
-                <br />
-                <input type="text" placeholder={detalle.marca} id='marca' value={editProd.marca}  onChange={handleInput}/>
-                <br />
-                <span>{errorMarca || '✔'}</span>
-                <br />
-                <span>Productos disponibles</span>
-                <br />
-                <input type="number" placeholder={detalle.disponibproducto} id="disponibproducto" value={editProd.disponibproducto} onChange={handleInput}/>
-                <br />
-                <span>{errorPD || '✔'}</span>
-                <br />
-                <span>Descripción</span>
-                <br />
-                <textarea placeholder={detalle.descproducto} id='descproducto' value={editProd.descproducto}  onChange={handleInput}></textarea>
-                <br />
-                <span>{errorDesc || '✔'}</span>
-                <br />
+            <form className={style.containerForm} onSubmit={onSubmit}>
+              <Link to={`/Detalle/${detalle.id}`}><span className={style.butonVolver}>🡸</span></Link>
+              <br />
+              <br />
+              <h1 className={style.title}>Editar producto</h1>
+              <br />
+              <br />
+              <span>Nombre</span>
+              <input className={style.inputs} type="text" id='nombreproducto' placeholder={detalle.nombreproducto} value={editProd.nombreproducto} onChange={handleInput}/>
+              <span>{errorNombre || '✔'}</span>
+              <br />
+              <br />
+              <span>Precio</span>
+              <input className={style.inputs} type="number" id='precioproducto' placeholder={detalle.precioproducto} value={editProd.precioproducto} onChange={handleInput}/>
+              <span>{errorPrecio|| '✔'}</span>
+              <br />
+              <br />
+              <span>Categoria</span>
+              <input className={style.inputs} type="text" placeholder={detalle.categoria} id='categoria' value={editProd.categoria}  onChange={handleInput}/>
+              <span>{errorCategoria || '✔'}</span>
+              <br />
+              <br />
+              <span>Marca</span>
+              <input className={style.inputs} type="text" placeholder={detalle.marca} id='marca' value={editProd.marca}  onChange={handleInput}/>
+              <span>{errorMarca || '✔'}</span>
+              <br />
+              <br />
+              <span>Productos disponibles</span>
+              <input className={style.inputs} type="number" placeholder={detalle.disponibproducto} id="disponibproducto" value={editProd.disponibproducto} onChange={handleInput}/>
+              <span>{errorPD || '✔'}</span>
+              <br />
+              <br />
+              <span>Descripción</span>
+              <textarea className={style.inputs} placeholder={detalle.descproducto} id='descproducto' value={editProd.descproducto}  onChange={handleInput}></textarea>
+              <span>{errorDesc || '✔'}</span>
+              <br />
+              <br />
                 {!fotoprinc?<div  className={style.drop} {...getRootProps()}>
                   <input id='fotoprinc' {...getInputProps()}/>
                   {isDragActive?'Agregar imagen':'Esperando imagen'}
                 </div>:null}
                 {fotoprinc?<span className={style.butonInterno} onClick={revertir}>Cambiar foto</span>:null}
+                {fotoprinc?'✔':errorImagen}
                 <br />
-                {fotoprinc?'Imagen agregada con exito':errorImagen}
                 <br />
-                <button type="submit">Editar</button>
+                <button type="submit" className={style.butonInterno}>Editar</button>
+                <br />
+                <br />
+                <h3>Nota: recuerda que los campos que no edites permaneceran igual</h3>
+                <br />
+                <br />
             </form>
-            <Link to='/Tienda'><button>volver a tienda</button></Link>
+
         </div>
     )
 }
