@@ -27,7 +27,6 @@ export default function Detail() {
                 <Link to='/Tienda'><button className={style.butonVolver}>🡸</button></Link>
                 <h1 className={style.title}>{detail.nombreproducto}</h1>
                 <div className={style.container}>
-<<<<<<< HEAD
                     <div className={style.card}>
                         <h3>Categoria: {detail.categoria}</h3>
                         <br />
@@ -50,23 +49,6 @@ export default function Detail() {
                         </div>
                         <br />
                     </div>
-=======
-                    <h2>{detail.nombreproducto}</h2>
-                    <img className={style.imagen} src={detail.fotoprinc} alt="" />
-                    <h3>Precio estandar{detail.precioproducto}$</h3>
-                    <h3>Categoria: {detail.categoria}</h3>
-                    <h2>Descripción</h2>
-                    <h4>{detail.descproducto}</h4>
-                    {detail.disponibproducto?<h3>Disponible</h3>:<h3>No Disponible</h3>}
-                    {detail.disponibproducto?<div>
-                        {!carrito.find(elemento=>Number(detail.id) === Number(elemento.id))?
-                        <button className={style.botones} onClick={()=>añadir(detail)}>Añadir a carrito</button>:
-                        <button className={style.botonQuitar} onClick={()=>quitar(Number(detail.id))}>Quitar de carrito</button>}
-                    </div>:null}
-                    { isAuthenticated ? <Link to={`/Editar/${detail.id}`} ><button className={style.botones}>Editar</button></Link> : null }
-                    
-                    <Link to='/Tienda'><button className={style.botones}>Volver a Tienda</button></Link>
->>>>>>> fbce8d9e4c981600de6d26bed78b7d5518034d64
                 </div>
         </div>
     )
