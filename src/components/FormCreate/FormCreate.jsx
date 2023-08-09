@@ -10,6 +10,7 @@ import {
   validtade_Categoria,
   validtade_Marca
 } from './Validation'
+import {Link } from 'react-router-dom'
 import { URL ,name_cloudinary} from '../../constantes'
 
 export default function FormCreate() {
@@ -49,7 +50,7 @@ export default function FormCreate() {
       setErrorImagen('')
     }
   }else{
-    return alert('Recuerda llenar todos los campos que tengan un *')
+    return alert('Todos los campos en la creacion de un producto son obligatorios')
   }    
 }
   const HandleInputs = (event)=>{
@@ -96,85 +97,83 @@ export default function FormCreate() {
   const [errorMarca,setErrorMarca] = useState('A que marca pertenece tu producto?')
     return(
         <div class='text-zinc-100'>
-            <form action="" onSubmit={(event)=>submit(event)}>
-                <div>
+            <form className={style.containerForm} action="" onSubmit={(event)=>submit(event)}>
+              <Link to='/Tienda'><span className={style.butonVolver}>🡸</span></Link>
+              <br />
+              <br />
                   <span>Nombre del producto</span>
-                  <br />
-                  <input onChange={HandleInputs} 
+                  <input 
+                  className={style.inputs}
+                  onChange={HandleInputs} 
                   type="text" 
                   id = 'nombreproducto'
                   placeholder=''
                   value={crearProd.nombreproducto}
-                  />*
-                  <br />
+                  />
                   <span>{errorNombre || '✔'}</span>
-                </div>
-                <div>
-                  <span>Precio</span>
                   <br />
-                  <input 
+                  <br />
+                  <span>Precio</span>
+                  <input
+                  className={style.inputs}
                   onChange={HandleInputs}
                   id='precioproducto' 
                   value={crearProd.precioproducto} 
-                  type="number" />*
-                  <br />
+                  type="number" />
                   <span>{errorPrecio || '✔'}</span>
-                </div>
-                <div>
-                  <span>Productos disponibles</span>
                   <br />
-                  <input 
+                  <br />
+                  <span>Productos disponibles</span>
+                  <input
+                  className={style.inputs} 
                   onChange={HandleInputs}
                   id='disponibproducto' 
                   value={crearProd.disponibproducto} 
-                  type="number" />*
-                  <br />
+                  type="number" />
                   <span>{errorCant || '✔'}</span>
-                </div>
-                <div>
-                  <span>Categoria</span>
                   <br />
-                  <input 
+                  <br />
+                  <span>Categoria</span>
+                  <input
+                  className={style.inputs} 
                   onChange={(event)=>{HandleInputs(event);}}
                   id='categoria' 
                   value={crearProd.categoria} 
-                  type="text" />*
-                  <br />
+                  type="text" />
                   <span>{errorCategoria || '✔'}</span>
-                </div>
-                <div>
-                  <span>Marca</span>
                   <br />
-                  <input 
+                  <br />
+                  <span>Marca</span>
+                  <input
+                  className={style.inputs} 
                   onChange={(event)=>{HandleInputs(event);}}
                   id='marca' 
                   value={crearProd.marca} 
-                  type="text" />*
-                  <br />
+                  type="text" />
                   <span>{errorMarca || '✔'}</span>
-                </div>
-                <div>
-                  <span>Descripción</span>
                   <br />
-                  <textarea 
+                  <br />
+                  <span>Descripción</span>
+                  <textarea
+                  className={style.inputs}
                   onChange={HandleInputs} 
                   id='descproducto' 
                   value={crearProd.descproducto} 
-                  type="Text" />*
-                  <br />
+                  type="Text" />
                   <span>{errorDesc || '✔'}</span>
-                </div>
-                <br />
+                  <br />
+                  <br />
                 {!fotoprinc?<div  className={style.drop} {...getRootProps()}>
                   <input id='fotoprinc' {...getInputProps()}/>
                   {isDragActive?'Agregar imagen':'Esperando imagen'}
                 </div>:null}
-                <br />
                 {fotoprinc?<span className={style.butonInterno} onClick={revertir}>Cambiar foto</span>:null}
+                {fotoprinc?'✔':errorImagen}
                 <br />
-                {fotoprinc?'Imagen agregada con exito':errorImagen}
                 <br />
-                <button type='submit'>submit</button>
+                <button type='submit' className={style.butonInterno}>Crear</button>
+                <br />
+                <br />
             </form>
         </div>
     )

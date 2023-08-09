@@ -79,7 +79,8 @@ export function Carrito (){
                         dispatch(productosRetirados(ele.id))
                     }
                     const quitar = (id)=>{
-                        elementos.filter(pro=>Number(pro.id) !== Number(id))
+                        window.location.reload(true);
+                        dispatch(removeCarrito(Number(id)))
                     }
                     return(
                         <div className={style.container} key={ele.id}>
