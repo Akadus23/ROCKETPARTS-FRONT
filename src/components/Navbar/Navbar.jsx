@@ -13,13 +13,15 @@ export default function Navbar (){
           <header class="w-full h-16 bg-black fixed">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2 ml-5 mt-3 content-center">
-                <a href="/" >
+                <Link to="/">
+                <button>
                   <p class="no-underline text-violet-800 font-semibold text-2xl">
                     Rocket
                     <span class='text-zinc-100'>Parts</span>
                     </p>
                   
-                </a>
+                </button>
+                </Link>
               </div>
               <div class="flex items-center gap-8 mr-5 mt-3">
                 <div  class="items-center font-semibold text-xl flex gap-6" >
