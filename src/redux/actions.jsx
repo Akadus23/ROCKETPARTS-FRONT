@@ -28,15 +28,12 @@ export const buscarId = (id)=>{
         }  
     }
 }
-export const addCarrito = (char, usuarioId) => {
-    const response = {...char};
+export const addCarrito = (char) =>{
+    const response = {...char}
 
     return {
         type:ADD_CARRITO,
-        payload: {
-            usuarioId: usuarioId,
-            productData: response
-        },
+        payload:response,
     }
 }
 export const precioInicial = (carrito)=>{
@@ -76,10 +73,7 @@ export const restarCarrito = (valor)=>{
 export const removeCarrito = (id) =>{
     return {
         type:REMOVE_CARRITO,
-        payload: {
-            usuarioId: usuarioId,
-            productId: productId
-        }
+        payload:id
     }
 }
 export function usuarioID(sub){
