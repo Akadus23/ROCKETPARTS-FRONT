@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
 import { usuarioID } from "../../redux/actions";
+import Redirect from "../../components/Redirect/Redirect";
 
 export default function Profile() {
     const { user, isAuthenticated } = useAuth0();
@@ -19,11 +20,17 @@ export default function Profile() {
     })
 
 
-    return (
-        <div class='text-zinc-100'>
-        {/* <img src={user.picture} alt='' ></img> */}
-        <h1>{user.name} </h1>
-        <h2>{user.nickname} </h2>
-        </div>
-    )
+    if(isAuthenticated) {
+        return (
+            <div class='text-zinc-100'>
+            {/* <img src={user.picture} alt='' ></img> */}
+            <h1>{user.name} </h1>
+            <h2>{user.nickname} </h2>
+            </div>
+        )
+    } else {
+        return <Redirect/>
+    }
+
+    
 }
