@@ -17,7 +17,8 @@ export default function Profile() {
                 sub: user.sub,
             }
         }
-    })
+        usuarioID(user.sub)
+    },[])
 
 
     if(isAuthenticated) {
