@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: '/ROCKETPARTS-FRONT/'
+  base: 'https://Akadus23.github.io/ROCKETPARTS-FRONT/'
 })
