@@ -1,37 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
 import { usuarioID } from "../../redux/actions";
+import Redirect from "../../components/Redirect/Redirect";
 
 export default function Profile() {
+    const { user, isAuthenticated } = useAuth0();
 
-    const dispatch = useDispatch()
-    const { isAuthenticated, user } = useAuth0();
-
-    let userInfo = []
-
-    const buscarInfo = () => {
-        return async function () {
-            const json = await axios('https://dev-jzsyp78gzn6fdoo4.us.auth0.com/userinfo')
-            console.log(json);
-            return userInfo.push(json.data)
+    useEffect(() => {
+        if (isAuthenticated) {
+            const userData = {
+                name: user.name,
+                nickname: user.nickname,
+                email: user.email,
+                picture: user.picture,
+                sub: user.sub,
+            }
         }
+    })
+
+
+    if(isAuthenticated) {
+        return (
+            <div class='text-zinc-100'>
+            {/* <img src={user.picture} alt='' ></img> */}
+            <h1>{user.name} </h1>
+            <h2>{user.nickname} </h2>
+            </div>
+        )
+    } else {
+        return <Redirect/>
     }
-    buscarInfo()
-    console.log(userInfo);
-    console.log(user, 'user auht0');
 
-    //const usuario = useSelector((state) => state.usuarioDetail)
-
-    // useEffect(() => {  
-    //     dispatch(usuarioID(user.sub))
-    // }, [])
-
-    return (
-        <div class='text-zinc-100'>
-        {/* <img src={user.picture} alt='' ></img> */}
-        <h1>{user.name} </h1>
-        <h2>{user.nickname} </h2>
-        </div>
-    )
+    
 }
