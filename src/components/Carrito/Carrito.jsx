@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import style from './Carrito.module.css'
 import axios from "axios"
 import {initMercadoPago,Wallet} from '@mercadopago/sdk-react'
-import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito } from "../../redux/actions"
+import { precioInicial, restarCarrito, sumarCarrito, productosAComprar, productosRetirados, limpiarComprados, quitarStock, limpiarCarrito, removeCarrito, usuarioID } from "../../redux/actions"
 import { URL } from "../../constantes"
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -14,12 +14,14 @@ const saveInLocalStorage = (carrito) => {
 
 export function Carrito (){
 
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
+    const {user, isAuthenticated, loginWithRedirect } = useAuth0();
+    
 
     const elementos = useSelector(state=>state.carritoCompra)
     const total = useSelector(state=>state.total)
-    const porComprar = useSelector(state=>state.comprados)
+    const usuario = useSelector(state=>state.usuarioDetail)
     const [preferenceId, setPreferenceId] = useState(null)
+    console.log(usuario);
 
     //Estado Local para almacenar carrito desde localStorage
     const [carritoLocal, setCarritoLocal] = useState([]);
@@ -33,6 +35,7 @@ export function Carrito (){
                 description:'Compra multiples productos',
                 price:Number(total),
                 quantity:1,
+                usuario
             })
             const {id} = response.data;
             console.log(response.data);
@@ -58,7 +61,9 @@ export function Carrito (){
         if(carritoGuardado) {
             setCarritoLocal(JSON.parse(carritoGuardado));
         }
-
+        if(isAuthenticated){
+            dispatch(usuarioID(user.sub))
+        }
         dispatch(limpiarComprados())
         elementos.map(ele=>{
             dispatch(productosAComprar(ele.id))
