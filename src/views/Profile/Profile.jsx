@@ -1,45 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from 'axios';
 import { usuarioID } from "../../redux/actions";
 
 export default function Profile() {
-    const { user } = useAuth0();
-    const userId = user.sub;
-    const dispatch = useDispatch()
-
-    const [userInfo, setUserInfo] = useState([]);
-
-    const buscarInfo = async () => {
-        try{
-            const response = await axios.get('https://dev-jzsyp78gzn6fdoo4.us.auth0.com/userinfo')
-            const userData = response.data;
-
-            console.log(userData);
-            setUserInfo(userData);
-
-            //set in localstorage
-            localStorage.setItem("userInfo", JSON.stringify({
-                accessToken: user.idToken,
-                userId: userData.sub // Use the relevant identifier from userData
-            }));
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const { user, isAuthenticated } = useAuth0();
 
     useEffect(() => {
-        buscarInfo();
-        console.log(userInfo);
-        console.log(user, "user auth0");
-    }, [user]);
+        if (isAuthenticated) {
+            const userData = {
+                name: user.name,
+                nickname: user.nickname,
+                email: user.email,
+                picture: user.picture,
+                sub: user.sub,
+            }
+        }
+    })
 
-    //const usuario = useSelector((state) => state.usuarioDetail)
-
-    // useEffect(() => {  
-    //     dispatch(usuarioID(user.sub))
-    // }, [])
 
     return (
         <div class='text-zinc-100'>

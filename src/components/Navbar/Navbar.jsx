@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import {Link} from 'react-router-dom'
+import axios from 'axios';
+
 
 export default function Navbar (){
-  
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const [isAuthenticatedNow, setIsAuthenticatedNow] = useState(false);
   console.log(isAuthenticated)
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsAuthenticatedNow(true);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (isAuthenticatedNow) {
+      const userData = {
+        name: user.name,
+        nickname: user.nickname,
+        email: user.email,
+        picture: user.picture,
+        sub: user.sub,
+        password: user.password,
+      };
+      
+      axios
+        .post("//localhost:3001/users", userData)
+        .then(response => {
+          console.log("User created in the backend:", response.data);
+        })
+        .catch(error => {
+          console.error("Error creating user:", error);
+        });
+    }
+  }, [isAuthenticatedNow, user]);
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin });
-};
-
-const handleLogin = () => {
-    loginWithRedirect();
-};
+  };
+  const handleLogin = () => {
+      loginWithRedirect();
+  };
 
     return (
 
